@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ partial "head-meta.html" . }}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-body: #f3f6f4;
+            --primary: #2d5a27;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-sm: 8px;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+        header { background: var(--primary); color: white; padding: 40px 20px; }
+        .header-content { max-width: 1200px; margin: auto; }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        nav { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }
+        nav a { color: white; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.1); }
+        .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
+        .post-card { background: white; border-radius: var(--radius-lg); padding: 20px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); border: 1px solid var(--border-color); margin-bottom: 20px; text-decoration: none; color: inherit; display: block; }
+        .post-card h3 { font-size: 1.2rem; color: var(--primary); margin-bottom: 5px; }
+        .meta { font-size: 0.9rem; color: var(--text-muted); }
+
+        {{ partial "footer-style.html" . | safeCSS }}
+    </style>
+</head>
+<body>
+<header>
+    <div class="header-content">
+        <h1>🇳🇱 {{ .Site.Title }}</h1>
+        <nav>
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/parks/" | relURL }}">Parks</a>
+            <a href="{{ "/map/" | relURL }}">Map</a>
+            <a href="{{ "/activities/" | relURL }}">Activations</a>
+            <a href="{{ "/fotos/" | relURL }}">Photos</a>
+            <a href="{{ "/about/" | relURL }}">About</a>
+        </nav>
+    </div>
+</header>
+<div class="container">
+    <h2 style="margin-bottom: 20px;">{{ .Title }}</h2>
+    {{ range .Pages }}
+        <a href="{{ .RelPermalink }}" class="post-card">
+            <h3>{{ .Title }}</h3>
+            <div class="meta">{{ with .Params.park_ref }}{{ . }} • {{ end }}{{ .Date.Format "02 Jan 2006" }}</div>
+        </a>
+    {{ end }}
+</div>
+{{ partial "footer.html" . }}
+</body>
+</html>

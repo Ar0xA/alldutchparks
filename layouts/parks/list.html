@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ partial "head-meta.html" . }}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #f3f6f4;
+            --bg-surface: #ffffff;
+            --primary: #2d5a27;
+            --primary-hover: #1e3d1a;
+            --accent: #e67e22;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+        header { background: var(--primary); color: white; padding: 40px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-content { max-width: 1200px; margin: auto; }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        header p { color: #aed0a6; font-size: 1.1rem; margin-bottom: 24px; }
+
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.1); transition: var(--transition); }
+        nav a:hover, nav a.active { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .page-header {
+            display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 30px; flex-wrap: wrap; gap: 20px;
+            position: sticky; top: 0; z-index: 50; background: var(--bg-body); padding: 15px 0; border-bottom: 1px solid var(--border-color);
+        }
+        .page-header h2 { font-size: 2rem; color: var(--text-main); }
+
+        .controls { display: flex; gap: 15px; flex-wrap: wrap; }
+        .search-box { padding: 10px 15px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; width: 250px; }
+        .filter-btn { padding: 10px 15px; background: white; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; font-weight: 500; transition: var(--transition); }
+        .filter-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
+
+        .province-section { background: white; border-radius: var(--radius-lg); padding: 30px; margin-bottom: 30px; box-shadow: var(--shadow-base); scroll-margin-top: 90px; }
+        .province-header { display: flex; align-items: center; gap: 20px; margin-bottom: 25px; border-bottom: 2px solid var(--bg-body); padding-bottom: 15px; cursor: pointer; user-select: none; }
+        .province-section.collapsed .province-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .province-header h3 { font-size: 1.5rem; color: var(--primary); margin: 0; }
+        .province-stats { display: flex; align-items: center; gap: 10px; color: var(--text-muted); font-weight: 600; font-size: 0.95rem; }
+        .mini-progress { width: 100px; height: 8px; background: var(--bg-body); border-radius: 10px; overflow: hidden; }
+        .mini-progress span { display: block; height: 100%; background: var(--accent); }
+        .chevron { margin-left: auto; color: var(--text-light); font-size: 1rem; transition: transform 0.2s ease; }
+        .province-section:not(.collapsed) .chevron { transform: rotate(90deg); }
+
+        .park-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 15px; }
+        .park-card { display: flex; align-items: center; padding: 15px; border-radius: var(--radius-sm); border: 1px solid var(--border-color); text-decoration: none; transition: var(--transition); }
+
+        .park-ref { font-family: monospace; font-weight: 700; font-size: 0.9rem; margin-right: 15px; width: 85px; flex-shrink: 0; }
+        .park-name { font-weight: 500; font-size: 0.95rem; flex-grow: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .park-icon { font-size: 1.2rem; flex-shrink: 0; margin-left: 10px; }
+
+        .park-card.done { background: #f0fdf4; border-color: #bbf7d0; color: var(--text-main); }
+        .park-card.done:hover { transform: translateY(-2px); box-shadow: var(--shadow-base); border-color: #86efac; }
+        .park-card.done .park-ref { color: var(--primary); }
+        .park-card.done .park-icon { color: #22c55e; }
+
+        .park-card.todo { background: #fafafa; color: var(--text-muted); cursor: default; }
+        .park-card.todo .park-ref { color: var(--text-light); }
+        .park-card.todo .park-icon { color: var(--border-color); opacity: 0.5; }
+
+        @media(max-width: 600px) {
+            .page-header {
+                flex-direction: column; align-items: flex-start;
+                /* A wrapped title+search+4-buttons stack is too tall to stay
+                   pinned on a small screen, so drop the sticky behavior here. */
+                position: static;
+            }
+            .search-box { width: 100%; }
+            .controls { width: 100%; }
+            .filter-btn { flex-grow: 1; text-align: center; }
+        }
+
+        {{ partial "footer-style.html" . | safeCSS }}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>🇳🇱 {{ .Site.Title }}</h1>
+        <p>Activations • Field Reports • Park Directory</p>
+        <nav>
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/parks/" | relURL }}" class="active">Parks</a>
+            <a href="{{ "/map/" | relURL }}">Map</a>
+            <a href="{{ "/activities/" | relURL }}">Activations</a>
+            <a href="{{ "/fotos/" | relURL }}">Photos</a>
+            <a href="{{ "/about/" | relURL }}">About</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Fetch published activation reports -->
+    {{ $activations := where .Site.RegularPages "Section" "activities" }}
+    {{ $activeRefs := dict }}
+    {{ range $activations }}
+        {{ if .Params.park_ref }}
+            {{ $activeRefs = merge $activeRefs (dict .Params.park_ref .RelPermalink) }}
+        {{ end }}
+    {{ end }}
+
+    {{ $totalVisited := len $activeRefs }}
+    {{ $totalParks := 0 }}
+    {{ range .Site.Data.parks }}
+        {{ $totalParks = add $totalParks (len .) }}
+    {{ end }}
+    {{ $totalTodo := sub $totalParks $totalVisited }}
+
+    <div class="page-header">
+        <h2>Netherlands POTA References</h2>
+        <div class="controls">
+            <input type="text" id="searchBox" class="search-box" placeholder="Search by name or NL-xxxx..." onkeyup="filterParks()">
+            <button class="filter-btn active" onclick="setFilter('all', this)">All ({{ $totalParks }})</button>
+            <button class="filter-btn" onclick="setFilter('done', this)">Visited ({{ $totalVisited }})</button>
+            <button class="filter-btn" onclick="setFilter('todo', this)">To Do ({{ $totalTodo }})</button>
+            <button class="filter-btn" id="toggleAllBtn" onclick="toggleAll(this)">Expand all</button>
+        </div>
+    </div>
+
+    <!-- Iterate over provinces from data/parks.json -->
+    {{ range $province, $parks := .Site.Data.parks }}
+        {{ $provDoneCount := 0 }}
+        {{ range $parks }}
+            {{ if index $activeRefs .ref }}{{ $provDoneCount = add $provDoneCount 1 }}{{ end }}
+        {{ end }}
+        {{ $provTotalCount := len $parks }}
+        {{ $provPct := mul (div (float $provDoneCount) $provTotalCount) 100 }}
+
+        <div class="province-section collapsed" id="{{ $province | anchorize }}">
+            <div class="province-header" onclick="toggleProvince(this)">
+                <h3>{{ $province }}</h3>
+                <div class="province-stats">
+                    {{ $provDoneCount }} / {{ $provTotalCount }}
+                    <div class="mini-progress"><span style="width: {{ printf "%.0f" $provPct }}%;"></span></div>
+                </div>
+                <span class="chevron">▸</span>
+            </div>
+
+            <div class="park-grid" style="display: none;">
+                {{ range $parks }}
+                    {{ $ref := .ref }}
+                    {{ if index $activeRefs $ref }}
+                        <!-- Visited park -->
+                        <a href="{{ index $activeRefs $ref }}" class="park-card done">
+                            <span class="park-ref">{{ $ref }}</span>
+                            <span class="park-name">{{ .name }}</span>
+                            <span class="park-icon">✓</span>
+                        </a>
+                    {{ else }}
+                        <!-- To do -->
+                        <div class="park-card todo">
+                            <span class="park-ref">{{ $ref }}</span>
+                            <span class="park-name">{{ .name }}</span>
+                            <span class="park-icon">○</span>
+                        </div>
+                    {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    {{ end }}
+
+</div>
+
+<!-- Interactive Filtering Script -->
+<script>
+    let currentFilter = 'all';
+
+    // Arriving via a #province link (e.g. from the homepage) should open
+    // that province's grid instead of leaving it collapsed.
+    if (window.location.hash) {
+        const target = document.querySelector(window.location.hash);
+        if (target && target.classList.contains('province-section')) {
+            target.classList.remove('collapsed');
+            target.querySelector('.park-grid').style.display = 'grid';
+        }
+    }
+
+    function setFilter(filter, btn) {
+        currentFilter = filter;
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        filterParks();
+    }
+
+    function toggleProvince(header) {
+        const section = header.closest('.province-section');
+        const grid = section.querySelector('.park-grid');
+        const collapsed = section.classList.toggle('collapsed');
+        grid.style.display = collapsed ? 'none' : 'grid';
+    }
+
+    let allExpanded = false;
+    function toggleAll(btn) {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.province-section').forEach(section => {
+            section.classList.toggle('collapsed', !allExpanded);
+            section.querySelector('.park-grid').style.display = allExpanded ? 'grid' : 'none';
+        });
+        btn.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+    }
+
+    function filterParks() {
+        const query = document.getElementById('searchBox').value.toLowerCase();
+        const isSearchActive = query.length > 0 || currentFilter !== 'all';
+
+        document.querySelectorAll('.province-section').forEach(section => {
+            let visibleInProvince = 0;
+
+            section.querySelectorAll('.park-card').forEach(card => {
+                const isDone = card.classList.contains('done');
+                const isTodo = card.classList.contains('todo');
+                const text = card.textContent.toLowerCase();
+
+                let matchesFilter = true;
+                if (currentFilter === 'done') matchesFilter = isDone;
+                if (currentFilter === 'todo') matchesFilter = isTodo;
+
+                let matchesSearch = text.includes(query);
+
+                if (matchesFilter && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleInProvince++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            section.style.display = visibleInProvince > 0 ? 'block' : 'none';
+
+            // While actively searching/filtering, force matching provinces open
+            // regardless of their collapsed state; otherwise respect it.
+            const grid = section.querySelector('.park-grid');
+            const isCollapsed = section.classList.contains('collapsed');
+            if (isSearchActive && visibleInProvince > 0) {
+                grid.style.display = 'grid';
+            } else {
+                grid.style.display = isCollapsed ? 'none' : 'grid';
+            }
+        });
+    }
+</script>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

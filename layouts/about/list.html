@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ partial "head-meta.html" . }}
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-body: #f3f6f4;
+            --bg-surface: #ffffff;
+            --primary: #2d5a27;
+            --primary-hover: #1e3d1a;
+            --accent: #e67e22;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+        header { background: var(--primary); color: white; padding: 40px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-content { max-width: 1200px; margin: auto; }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        header p { color: #aed0a6; font-size: 1.1rem; margin-bottom: 24px; }
+
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.1); transition: var(--transition); }
+        nav a:hover, nav a.active { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+
+        .container { max-width: 900px; margin: 40px auto; padding: 0 20px; display: grid; gap: 25px; }
+
+        .card { background: var(--bg-surface); border-radius: var(--radius-lg); padding: 30px; box-shadow: var(--shadow-base); border: 1px solid var(--border-color); }
+        .card h2 { font-size: 1.4rem; margin-bottom: 15px; color: var(--text-main); border-bottom: 2px solid var(--bg-body); padding-bottom: 10px; }
+        .card p { margin-bottom: 12px; color: var(--text-muted); }
+        .card p:last-child { margin-bottom: 0; }
+        .card ul { padding-left: 20px; color: var(--text-muted); }
+        .card li { margin-bottom: 8px; }
+        .card li strong { color: var(--text-main); }
+
+        /* --- Photo placeholder grid --- */
+        .photo-placeholder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
+        .photo-placeholder {
+            aspect-ratio: 4 / 3;
+            border-radius: var(--radius-md);
+            background: linear-gradient(135deg, #52785a, #b6d0a5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.85);
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            padding: 10px;
+        }
+
+        @media(max-width: 600px) {
+            .container { padding: 0 15px; }
+        }
+
+        {{ partial "footer-style.html" . | safeCSS }}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>🇳🇱 {{ .Site.Title }}</h1>
+        <p>Activations • Field Reports • Park Directory</p>
+        <nav>
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/parks/" | relURL }}">Parks</a>
+            <a href="{{ "/map/" | relURL }}">Map</a>
+            <a href="{{ "/activities/" | relURL }}">Activations</a>
+            <a href="{{ "/fotos/" | relURL }}">Photos</a>
+            <a href="{{ "/about/" | relURL }}" class="active">About</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h2>👋 About Me</h2>
+        <p>
+            Hi, I'm <strong>[Your name / callsign]</strong> — a Netherlands-based amateur radio operator
+            with a soft spot for getting outdoors, setting up a station somewhere quiet, and putting
+            Dutch parks and nature reserves on the air.
+        </p>
+        <p>
+            What started as a casual weekend hobby turned into a proper project: this site tracks every
+            Parks on the Air activation I log, together with photos and field notes from each trip, so
+            fellow activators and hunters can see what a park is actually like before they visit.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>🎒 My Gear</h2>
+        <ul>
+            <li><strong>Transceiver:</strong> [e.g. QRP transceiver, 5–10W]</li>
+            <li><strong>Antenna:</strong> [e.g. end-fed half-wave / vertical whip with radials]</li>
+            <li><strong>Power:</strong> [e.g. small LiFePO4 battery pack]</li>
+            <li><strong>Support:</strong> [e.g. carbon fiber mast / tripod]</li>
+            <li><strong>Logging:</strong> [e.g. logging app on phone, uploaded to POTA after each activation]</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>🏆 The Challenge</h2>
+        <p>
+            The Netherlands has <strong>325 official POTA references</strong> spread across all twelve
+            provinces — from national parks to small municipal nature reserves. The goal behind this site
+            is simple: activate every single one of them, at least once, and document the journey along
+            the way.
+        </p>
+        <p>
+            Follow live progress on the <a href="{{ "/parks/" | relURL }}" style="color: var(--primary); font-weight: 600;">Parks page</a>
+            or see it plotted on the <a href="{{ "/map/" | relURL }}" style="color: var(--primary); font-weight: 600;">Map</a>.
+        </p>
+    </div>
+
+    <div class="card">
+        <h2>📸 Photos</h2>
+        <div class="photo-placeholder-grid">
+            <div class="photo-placeholder">Photo coming soon</div>
+            <div class="photo-placeholder">Photo coming soon</div>
+            <div class="photo-placeholder">Photo coming soon</div>
+        </div>
+    </div>
+
+</div>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

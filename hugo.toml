@@ -1,0 +1,11 @@
+baseURL = "https://alldutchparks.nl/"
+languageCode = "en-us"
+title = "alldutchparks.nl"
+enableRobotsTXT = true
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Park totals and per-province progress are computed live from data/parks.json
+# and the activities section — see layouts/parks/list.html, layouts/map/list.html
+# and layouts/index.html.

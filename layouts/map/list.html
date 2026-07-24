@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ partial "head-meta.html" . }}
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet: draws the OSM map itself (no iframe), lets us place custom markers -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+    <style>
+        :root {
+            --bg-body: #f3f6f4;
+            --bg-surface: #ffffff;
+            --primary: #2d5a27;
+            --primary-hover: #1e3d1a;
+            --accent: #e67e22;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
+
+        header { background: var(--primary); color: white; padding: 40px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-content { max-width: 1200px; margin: auto; }
+        header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
+        header p { color: #aed0a6; font-size: 1.1rem; margin-bottom: 24px; }
+
+        nav { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-weight: 500; padding: 8px 16px; border-radius: var(--radius-sm); background: rgba(255, 255, 255, 0.1); transition: var(--transition); }
+        nav a:hover, nav a.active { background: rgba(255, 255, 255, 0.25); transform: translateY(-2px); }
+
+        .container { max-width: 1200px; margin: 40px auto; padding: 0 20px; }
+        .page-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 20px; flex-wrap: wrap; gap: 20px; }
+        .page-header h2 { font-size: 2rem; color: var(--text-main); }
+
+        .legend { display: flex; gap: 20px; align-items: center; color: var(--text-muted); font-size: 0.95rem; font-weight: 500; }
+        .legend-dot { display: inline-block; width: 14px; height: 14px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+        .legend-dot.done { background: #22c55e; }
+        .legend-dot.todo { background: #a0aec0; }
+
+        #map-wrap {
+            background: var(--bg-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-base);
+            padding: 12px;
+            margin-bottom: 30px;
+        }
+
+        #map { height: 70vh; min-height: 420px; width: 100%; border-radius: var(--radius-md); z-index: 1; }
+
+        /* Popup content */
+        .popup-ref { font-family: monospace; font-weight: 700; color: var(--primary); font-size: 0.85rem; }
+        .popup-name { font-weight: 600; margin: 4px 0 8px 0; }
+        .popup-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 2px; }
+        .popup-link { display: inline-block; margin-top: 4px; color: var(--primary); font-weight: 600; text-decoration: none; }
+        .popup-link:hover { text-decoration: underline; }
+        .popup-todo-note { color: var(--text-light); font-size: 0.85rem; margin-top: 6px; }
+
+        @media(max-width: 600px) {
+            .page-header { flex-direction: column; align-items: flex-start; }
+        }
+
+        {{ partial "footer-style.html" . | safeCSS }}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>🇳🇱 {{ .Site.Title }}</h1>
+        <p>Activations • Field Reports • Park Directory</p>
+        <nav>
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/parks/" | relURL }}">Parks</a>
+            <a href="{{ "/map/" | relURL }}" class="active">Map</a>
+            <a href="{{ "/activities/" | relURL }}">Activations</a>
+            <a href="{{ "/fotos/" | relURL }}">Photos</a>
+            <a href="{{ "/about/" | relURL }}">About</a>
+        </nav>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- Same visited/todo matching logic as layouts/parks/list.html -->
+    {{ $activations := where .Site.RegularPages "Section" "activities" }}
+    {{ $activeRefs := dict }}
+    {{ range $activations }}
+        {{ if .Params.park_ref }}
+            {{ $activeRefs = merge $activeRefs (dict .Params.park_ref .RelPermalink) }}
+        {{ end }}
+    {{ end }}
+
+    {{ $totalVisited := len $activeRefs }}
+    {{ $totalParks := 0 }}
+    {{ range .Site.Data.parks }}
+        {{ $totalParks = add $totalParks (len .) }}
+    {{ end }}
+
+    <div class="page-header">
+        <h2>Map of the Netherlands</h2>
+        <div class="legend">
+            <span><span class="legend-dot done"></span>Geactiveerd ({{ $totalVisited }})</span>
+            <span><span class="legend-dot todo"></span>Nog te doen ({{ sub $totalParks $totalVisited }})</span>
+        </div>
+    </div>
+
+    <div id="map-wrap">
+        <div id="map"></div>
+    </div>
+
+</div>
+
+<script>
+    // All parks, grouped by province, straight from data/parks.json
+    // NOTE: `| safeJS` is required here - without it Hugo's html/template
+    // auto-escaper treats the jsonify output as an untrusted JS string and
+    // re-encodes the whole object into a quoted string literal, which is
+    // why the map used to render with zero markers (parksByProvince ended
+    // up as a plain string, not an object).
+    const parksByProvince = {{ .Site.Data.parks | jsonify | safeJS }};
+
+    // { "NL-0084": "/activities/nl-0084/", ... } - only visited parks have an entry
+    const activeRefs = {{ $activeRefs | jsonify | safeJS }};
+
+    // Flatten into one array of parks for the map
+    const parks = [];
+    for (const province in parksByProvince) {
+        parksByProvince[province].forEach(p => parks.push({ ...p, province }));
+    }
+
+    const map = L.map('map').setView([52.2, 5.3], 8);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 18,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    parks.forEach(park => {
+        const url = activeRefs[park.ref];
+        const visited = Boolean(url);
+
+        const marker = L.circleMarker([park.lat, park.lon], {
+            radius: 8,
+            weight: 2,
+            color: '#ffffff',
+            fillColor: visited ? '#22c55e' : '#a0aec0',
+            fillOpacity: 0.9
+        }).addTo(map);
+
+        if (visited) {
+            // Visited parks: clicking the marker jumps straight to the activation writeup.
+            marker.bindTooltip(park.name, { direction: 'top', offset: [0, -8] });
+            marker.on('click', () => { window.location.href = url; });
+        } else {
+            // Not-yet-activated parks: show ref, name and location from parks.json.
+            const popupHtml = `
+                <div class="popup-ref">${park.ref}</div>
+                <div class="popup-name">${park.name}</div>
+                <div class="popup-meta">${park.province}</div>
+                <div class="popup-meta">${park.lat.toFixed(4)}, ${park.lon.toFixed(4)} (${park.grid})</div>
+                <div class="popup-todo-note">Nog niet geactiveerd</div>
+            `;
+            marker.bindPopup(popupHtml);
+        }
+    });
+</script>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>

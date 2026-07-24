@@ -1,0 +1,26 @@
+{{ $title := .Title }}
+{{ if .IsHome }}{{ $title = .Site.Title }}{{ end }}
+
+{{ $description := "Tracking every Dutch POTA park activation — field reports, photos, and live completion progress." }}
+{{ if .Params.qso_count }}
+    {{ $description = printf "POTA activation report for %s%s." .Title (cond (isset .Params "province") (printf " (%s)" .Params.province) "") }}
+{{ end }}
+
+{{ $image := "" }}
+{{ with .Params.images }}{{ $image = index . 0 }}{{ end }}
+
+<link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+
+<meta name="description" content="{{ $description }}">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{ with $image }}<meta property="og:image" content="{{ . | absURL }}">{{ end }}
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $title }}">
+<meta name="twitter:description" content="{{ $description }}">
+{{ with $image }}<meta name="twitter:image" content="{{ . | absURL }}">{{ end }}

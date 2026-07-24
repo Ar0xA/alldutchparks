@@ -1,0 +1,2301 @@
+{
+  "Friesland": [
+    {
+      "ref": "NL-0001",
+      "name": "Schiermonnikoog National Park",
+      "lat": 53.495,
+      "lon": 6.23896,
+      "grid": "JO33cl"
+    },
+    {
+      "ref": "NL-0002",
+      "name": "De Alde Feanen National Park",
+      "lat": 53.1293,
+      "lon": 5.94508,
+      "grid": "JO23xd"
+    },
+    {
+      "ref": "NL-0020",
+      "name": "Lauwersmeer National Park",
+      "lat": 53.3797,
+      "lon": 6.18891,
+      "grid": "JO33cj"
+    },
+    {
+      "ref": "NL-0032",
+      "name": "Fochteloerveen Provincial Park",
+      "lat": 53.0025,
+      "lon": 6.37021,
+      "grid": "JO33ea"
+    },
+    {
+      "ref": "NL-0058",
+      "name": "Vlieland Provincial Park",
+      "lat": 53.2614,
+      "lon": 4.96505,
+      "grid": "JO23lg"
+    },
+    {
+      "ref": "NL-0063",
+      "name": "Boschplaat, Terschelling Provincial Park",
+      "lat": 53.4286,
+      "lon": 5.47289,
+      "grid": "JO23rk"
+    },
+    {
+      "ref": "NL-0064",
+      "name": "Feugelpolle - Ameland Provincial Park",
+      "lat": 53.4261,
+      "lon": 5.66123,
+      "grid": "JO23tk"
+    },
+    {
+      "ref": "NL-0111",
+      "name": "Witte en Zwarte Brekken Provincial Park",
+      "lat": 52.9975,
+      "lon": 5.68021,
+      "grid": "JO22ux"
+    },
+    {
+      "ref": "NL-0112",
+      "name": "Bakkeveense Duinen Provincial Park",
+      "lat": 53.0845,
+      "lon": 6.28159,
+      "grid": "JO33dc"
+    },
+    {
+      "ref": "NL-0129",
+      "name": "Huitebuersterbutenpolder - De Hege Gerzen Provincial Park",
+      "lat": 52.8351,
+      "lon": 5.54677,
+      "grid": "JO22su"
+    },
+    {
+      "ref": "NL-0216",
+      "name": "Rottige Meente National Park",
+      "lat": 52.8434,
+      "lon": 5.90963,
+      "grid": "JO22wu"
+    },
+    {
+      "ref": "NL-0227",
+      "name": "Lycklamabos National Park",
+      "lat": 52.868,
+      "lon": 5.55264,
+      "grid": "JO22su"
+    },
+    {
+      "ref": "NL-0248",
+      "name": "Duinen Ameland Natura 2000",
+      "lat": 53.4542,
+      "lon": 5.76515,
+      "grid": "JO23vk"
+    },
+    {
+      "ref": "NL-0249",
+      "name": "Duinen Vlieland Natura 2000",
+      "lat": 53.2859,
+      "lon": 5.0038,
+      "grid": "JO23mg"
+    },
+    {
+      "ref": "NL-0262",
+      "name": "UNESCO Werelderfgoed  Ir. D.F. Woudagemaal World Heritage Site",
+      "lat": 52.8466,
+      "lon": 5.67979,
+      "grid": "JO22uu"
+    },
+    {
+      "ref": "NL-0264",
+      "name": "Zuiderzeepad (LAW 8) National Recreation Trail",
+      "lat": 52.9694,
+      "lon": 5.10834,
+      "grid": "JO22nx"
+    },
+    {
+      "ref": "NL-0270",
+      "name": "Het Katlijker Schar (Ketliker Skar). Provincial Park",
+      "lat": 52.9388,
+      "lon": 6.03132,
+      "grid": "JO32aw"
+    },
+    {
+      "ref": "NL-0271",
+      "name": "Peazemerlannen Marine Protected Area",
+      "lat": 53.405,
+      "lon": 6.09931,
+      "grid": "JO33bj"
+    },
+    {
+      "ref": "NL-0272",
+      "name": "Rysterbosk Provincial Nature Reserve",
+      "lat": 52.8603,
+      "lon": 5.4898,
+      "grid": "JO22ru"
+    },
+    {
+      "ref": "NL-0273",
+      "name": "Grikelân en Turkije Natura 2000",
+      "lat": 53.2606,
+      "lon": 5.90488,
+      "grid": "JO23wg"
+    },
+    {
+      "ref": "NL-0294",
+      "name": "Noard-Fryslân Bûtendyks National Park",
+      "lat": 53.3364,
+      "lon": 5.74225,
+      "grid": "JO23ui"
+    },
+    {
+      "ref": "NL-0317",
+      "name": "Waddenzee UNESCO Geopark",
+      "lat": 53.2821,
+      "lon": 5.34223,
+      "grid": "JO23qg"
+    }
+  ],
+  "Drenthe": [
+    {
+      "ref": "NL-0003",
+      "name": "Dwingelderveld National Park",
+      "lat": 52.8104,
+      "lon": 6.40248,
+      "grid": "JO32et"
+    },
+    {
+      "ref": "NL-0004",
+      "name": "Drentsche Aa National Park",
+      "lat": 53.0841,
+      "lon": 6.64837,
+      "grid": "JO33hc"
+    },
+    {
+      "ref": "NL-0021",
+      "name": "Drents-Friese Wold National Park",
+      "lat": 52.8801,
+      "lon": 6.31106,
+      "grid": "JO32dv"
+    },
+    {
+      "ref": "NL-0031",
+      "name": "Hooghalen - Grolloo Provincial Park",
+      "lat": 52.9187,
+      "lon": 6.67162,
+      "grid": "JO32iw"
+    },
+    {
+      "ref": "NL-0035",
+      "name": "Bargerveen Provincial Park",
+      "lat": 52.6717,
+      "lon": 7.02216,
+      "grid": "JO32mq"
+    },
+    {
+      "ref": "NL-0046",
+      "name": "Sleenerzand Provincial Park",
+      "lat": 52.8203,
+      "lon": 6.76059,
+      "grid": "JO32jt"
+    },
+    {
+      "ref": "NL-0047",
+      "name": "Odoorn - Boswachterij Provincial Park",
+      "lat": 52.8601,
+      "lon": 6.81664,
+      "grid": "JO32ju"
+    },
+    {
+      "ref": "NL-0085",
+      "name": "Holtingerveld Provincial Park",
+      "lat": 52.8033,
+      "lon": 6.25411,
+      "grid": "JO32dt"
+    },
+    {
+      "ref": "NL-0099",
+      "name": "Mantingerzand Provincial Park",
+      "lat": 52.7852,
+      "lon": 6.61728,
+      "grid": "JO32hs"
+    },
+    {
+      "ref": "NL-0113",
+      "name": "Drouwenerzand Provincial Park",
+      "lat": 52.9617,
+      "lon": 6.80491,
+      "grid": "JO32jx"
+    },
+    {
+      "ref": "NL-0114",
+      "name": "Elperstroomgebied - Grondwatermeter Provincial Park",
+      "lat": 52.8865,
+      "lon": 6.6749,
+      "grid": "JO32iv"
+    },
+    {
+      "ref": "NL-0195",
+      "name": "Gees Nature Park",
+      "lat": 52.7635,
+      "lon": 6.6415,
+      "grid": "JO32hs"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0277",
+      "name": "Landgoed De Braak Park",
+      "lat": 53.1506,
+      "lon": 6.56156,
+      "grid": "JO33gd"
+    },
+    {
+      "ref": "NL-0310",
+      "name": "de Hondsrug UNESCO Geopark",
+      "lat": 52.9987,
+      "lon": 6.62174,
+      "grid": "JO32hx"
+    }
+  ],
+  "Overijssel": [
+    {
+      "ref": "NL-0005",
+      "name": "De Weerribben-Wieden National Park",
+      "lat": 52.6892,
+      "lon": 6.0241,
+      "grid": "JO32aq"
+    },
+    {
+      "ref": "NL-0006",
+      "name": "Sallandse Heuvelrug National Park",
+      "lat": 52.3405,
+      "lon": 6.41845,
+      "grid": "JO32fi"
+    },
+    {
+      "ref": "NL-0042",
+      "name": "Engbertsdijksvenen Provincial Park",
+      "lat": 52.473,
+      "lon": 6.66184,
+      "grid": "JO32hl"
+    },
+    {
+      "ref": "NL-0052",
+      "name": "Buurserzand Provincial Park",
+      "lat": 52.158,
+      "lon": 6.80369,
+      "grid": "JO32jd"
+    },
+    {
+      "ref": "NL-0053",
+      "name": "Haaksbergseveen Provincial Park",
+      "lat": 52.1242,
+      "lon": 6.77347,
+      "grid": "JO32jc"
+    },
+    {
+      "ref": "NL-0062",
+      "name": "Vecht en Beneden Regge - Eerderveld Provincial Park",
+      "lat": 52.497,
+      "lon": 6.46725,
+      "grid": "JO32fl"
+    },
+    {
+      "ref": "NL-0082",
+      "name": "Springendal & Dal van de Mosbeek Provincial Park",
+      "lat": 52.4341,
+      "lon": 6.88638,
+      "grid": "JO32kk"
+    },
+    {
+      "ref": "NL-0086",
+      "name": "Olde Maten & Veerslootslanden Park",
+      "lat": 52.6259,
+      "lon": 6.10346,
+      "grid": "JO32bp"
+    },
+    {
+      "ref": "NL-0087",
+      "name": "Borkeld Provincial Park",
+      "lat": 52.2684,
+      "lon": 6.47377,
+      "grid": "JO32fg"
+    },
+    {
+      "ref": "NL-0088",
+      "name": "Aamsveen Provincial Park",
+      "lat": 52.1865,
+      "lon": 6.94304,
+      "grid": "JO32le"
+    },
+    {
+      "ref": "NL-0089",
+      "name": "Witte Veen Provincial Park",
+      "lat": 52.151,
+      "lon": 6.8763,
+      "grid": "JO32kd"
+    },
+    {
+      "ref": "NL-0091",
+      "name": "Rijntakken Provincial Park",
+      "lat": 51.9508,
+      "lon": 5.94077,
+      "grid": "JO21xw"
+    },
+    {
+      "ref": "NL-0100",
+      "name": "Wierdenseveld Provincial Park",
+      "lat": 52.3799,
+      "lon": 6.52849,
+      "grid": "JO32gj"
+    },
+    {
+      "ref": "NL-0101",
+      "name": "Achter de Voort, Agelerbroek & Voltherbroek Provincial Park",
+      "lat": 52.3874,
+      "lon": 6.93928,
+      "grid": "JO32lj"
+    },
+    {
+      "ref": "NL-0102",
+      "name": "Landgoederen Oldenzaal Haagse Bos Provincial Park",
+      "lat": 52.2697,
+      "lon": 6.95815,
+      "grid": "JO32lg"
+    },
+    {
+      "ref": "NL-0103",
+      "name": "Bergvennen & Brecklenkampse Veld Provincial Park",
+      "lat": 52.4297,
+      "lon": 7.00346,
+      "grid": "JO32mk"
+    },
+    {
+      "ref": "NL-0115",
+      "name": "Lonnekermeer Provincial Park",
+      "lat": 52.274,
+      "lon": 6.85207,
+      "grid": "JO32kg"
+    },
+    {
+      "ref": "NL-0127",
+      "name": "Twickel - Bid Twickeler Vaart Provincial Park",
+      "lat": 52.2881,
+      "lon": 6.69707,
+      "grid": "JO32ig"
+    },
+    {
+      "ref": "NL-0251",
+      "name": "Lemelerberg Natura 2000",
+      "lat": 52.4551,
+      "lon": 6.39877,
+      "grid": "JO32ek"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0264",
+      "name": "Zuiderzeepad (LAW 8) National Recreation Trail",
+      "lat": 52.9694,
+      "lon": 5.10834,
+      "grid": "JO22nx"
+    },
+    {
+      "ref": "NL-0297",
+      "name": "Pionierspad National Recreation Trail",
+      "lat": 52.4432,
+      "lon": 5.43821,
+      "grid": "JO22rk"
+    }
+  ],
+  "Gelderland": [
+    {
+      "ref": "NL-0007",
+      "name": "Veluwezoom National Park",
+      "lat": 52.0469,
+      "lon": 6.01231,
+      "grid": "JO32ab"
+    },
+    {
+      "ref": "NL-0008",
+      "name": "Hoge Veluwe National Park",
+      "lat": 52.0787,
+      "lon": 5.83231,
+      "grid": "JO22vb"
+    },
+    {
+      "ref": "NL-0023",
+      "name": "Speulder en Sprielderbos Nature Park",
+      "lat": 52.2578,
+      "lon": 5.68884,
+      "grid": "JO22ug"
+    },
+    {
+      "ref": "NL-0027",
+      "name": "Kootwijkerzand Park",
+      "lat": 52.1702,
+      "lon": 5.76093,
+      "grid": "JO22ve"
+    },
+    {
+      "ref": "NL-0029",
+      "name": "Leuvenumse bos Park",
+      "lat": 52.3153,
+      "lon": 5.68361,
+      "grid": "JO22uh"
+    },
+    {
+      "ref": "NL-0036",
+      "name": "Terletse Heide Nature Park",
+      "lat": 52.0561,
+      "lon": 5.95509,
+      "grid": "JO22xb"
+    },
+    {
+      "ref": "NL-0038",
+      "name": "Arkemheen Park",
+      "lat": 52.2371,
+      "lon": 5.41848,
+      "grid": "JO22rf"
+    },
+    {
+      "ref": "NL-0040",
+      "name": "Loenermark Provincial Park",
+      "lat": 52.1025,
+      "lon": 6.00267,
+      "grid": "JO32ac"
+    },
+    {
+      "ref": "NL-0043",
+      "name": "Ooijpolder Provincial Park",
+      "lat": 51.8655,
+      "lon": 5.91062,
+      "grid": "JO21wu"
+    },
+    {
+      "ref": "NL-0045",
+      "name": "Deelerwoud Provincial Park",
+      "lat": 52.0813,
+      "lon": 5.89811,
+      "grid": "JO22wb"
+    },
+    {
+      "ref": "NL-0056",
+      "name": "Bergherbos Park",
+      "lat": 51.9026,
+      "lon": 6.20148,
+      "grid": "JO31cv"
+    },
+    {
+      "ref": "NL-0059",
+      "name": "Planken Wambuis Nature Park",
+      "lat": 52.032,
+      "lon": 5.78471,
+      "grid": "JO22va"
+    },
+    {
+      "ref": "NL-0061",
+      "name": "Ugchelen Hoenderloo - Het Leesten Provincial Park",
+      "lat": 52.169,
+      "lon": 5.90774,
+      "grid": "JO22we"
+    },
+    {
+      "ref": "NL-0074",
+      "name": "Rosendael Bos Park",
+      "lat": 52.0333,
+      "lon": 5.94793,
+      "grid": "JO22xa"
+    },
+    {
+      "ref": "NL-0083",
+      "name": "Uiterwaarden Provincial Park",
+      "lat": 51.9645,
+      "lon": 5.68431,
+      "grid": "JO21ux"
+    },
+    {
+      "ref": "NL-0084",
+      "name": "Korenburgerveen - Vragenderveen Provincial Park",
+      "lat": 51.9849,
+      "lon": 6.64963,
+      "grid": "JO31hx"
+    },
+    {
+      "ref": "NL-0090",
+      "name": "Landgoederen Brummen Provincial Park",
+      "lat": 52.1215,
+      "lon": 6.13099,
+      "grid": "JO32bc"
+    },
+    {
+      "ref": "NL-0091",
+      "name": "Rijntakken Provincial Park",
+      "lat": 51.9508,
+      "lon": 5.94077,
+      "grid": "JO21xw"
+    },
+    {
+      "ref": "NL-0130",
+      "name": "Rijk van Nijmegen Provincial Park",
+      "lat": 51.7904,
+      "lon": 5.92331,
+      "grid": "JO21xs"
+    },
+    {
+      "ref": "NL-0192",
+      "name": "Lingebos Park",
+      "lat": 51.846,
+      "lon": 5.03354,
+      "grid": "JO21mu"
+    },
+    {
+      "ref": "NL-0211",
+      "name": "Grebbelinie National Park",
+      "lat": 52.0496,
+      "lon": 5.55666,
+      "grid": "JO22sb"
+    },
+    {
+      "ref": "NL-0212",
+      "name": "Boswachterij Nunspeet National Park",
+      "lat": 52.3623,
+      "lon": 5.84388,
+      "grid": "JO22wi"
+    },
+    {
+      "ref": "NL-0213",
+      "name": "Boswachterij Vierhouterbos National Park",
+      "lat": 52.3243,
+      "lon": 5.84169,
+      "grid": "JO22wh"
+    },
+    {
+      "ref": "NL-0214",
+      "name": "Radio Kootwijk National Park",
+      "lat": 52.1743,
+      "lon": 5.82414,
+      "grid": "JO22ve"
+    },
+    {
+      "ref": "NL-0215",
+      "name": "Boswachterij Kootwijk National Park",
+      "lat": 52.1853,
+      "lon": 5.7237,
+      "grid": "JO22ue"
+    },
+    {
+      "ref": "NL-0218",
+      "name": "Ermeloose Heide Nature Reserve",
+      "lat": 52.2853,
+      "lon": 5.6691,
+      "grid": "JO22ug"
+    },
+    {
+      "ref": "NL-0224",
+      "name": "Buitenpolder Munnikenland Provincial Park",
+      "lat": 51.8078,
+      "lon": 5.03208,
+      "grid": "JO21mt"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0264",
+      "name": "Zuiderzeepad (LAW 8) National Recreation Trail",
+      "lat": 52.9694,
+      "lon": 5.10834,
+      "grid": "JO22nx"
+    },
+    {
+      "ref": "NL-0274",
+      "name": "Duivelsberg Provincial Park",
+      "lat": 51.8202,
+      "lon": 5.94049,
+      "grid": "JO21xt"
+    },
+    {
+      "ref": "NL-0275",
+      "name": "Heumensoord Provincial Park",
+      "lat": 51.8034,
+      "lon": 5.87018,
+      "grid": "JO21wt"
+    },
+    {
+      "ref": "NL-0279",
+      "name": "Werk aan het Spoel World Heritage Site",
+      "lat": 51.9588,
+      "lon": 5.19021,
+      "grid": "JO21ox"
+    },
+    {
+      "ref": "NL-0296",
+      "name": "Landgoed Hoevelaken Park",
+      "lat": 52.1909,
+      "lon": 5.44205,
+      "grid": "JO22re"
+    },
+    {
+      "ref": "NL-0309",
+      "name": "Natuur- en recreatiegebied Engbergen Recreation Park",
+      "lat": 51.8777,
+      "lon": 6.39194,
+      "grid": "JO31ev"
+    },
+    {
+      "ref": "NL-0313",
+      "name": "Koninklijke Houtvesterij Het Loo National Park",
+      "lat": 52.2839,
+      "lon": 5.85217,
+      "grid": "JO22wg"
+    }
+  ],
+  "Utrecht": [
+    {
+      "ref": "NL-0009",
+      "name": "Utrechtse Heuvelrug National Park",
+      "lat": 52.0446,
+      "lon": 5.36631,
+      "grid": "JO22qb"
+    },
+    {
+      "ref": "NL-0044",
+      "name": "De Vuursche - Lage Vuursche Park",
+      "lat": 52.1933,
+      "lon": 5.22175,
+      "grid": "JO22oe"
+    },
+    {
+      "ref": "NL-0075",
+      "name": "Grebbeberg Provincial Park",
+      "lat": 51.9536,
+      "lon": 5.59491,
+      "grid": "JO21tw"
+    },
+    {
+      "ref": "NL-0077",
+      "name": "Lingegebied & Diefdijk-Zuid Provincial Park",
+      "lat": 51.9302,
+      "lon": 5.146,
+      "grid": "JO21nw"
+    },
+    {
+      "ref": "NL-0091",
+      "name": "Rijntakken Provincial Park",
+      "lat": 51.9508,
+      "lon": 5.94077,
+      "grid": "JO21xw"
+    },
+    {
+      "ref": "NL-0124",
+      "name": "Zouweboezem Provincial Park",
+      "lat": 51.9556,
+      "lon": 4.99035,
+      "grid": "JO21lw"
+    },
+    {
+      "ref": "NL-0125",
+      "name": "Botshol Provincial Park",
+      "lat": 52.2539,
+      "lon": 4.91305,
+      "grid": "JO22kg"
+    },
+    {
+      "ref": "NL-0196",
+      "name": "Noorderparkruigenhoek National Park",
+      "lat": 52.133,
+      "lon": 5.11439,
+      "grid": "JO22nd"
+    },
+    {
+      "ref": "NL-0197",
+      "name": "Kromme-Rijn en Overlangbroek National Reserve",
+      "lat": 51.9898,
+      "lon": 5.36558,
+      "grid": "JO21qx"
+    },
+    {
+      "ref": "NL-0198",
+      "name": "Landgoed Broekhuizen Nature Reserve",
+      "lat": 52.0083,
+      "lon": 5.40051,
+      "grid": "JO22qa"
+    },
+    {
+      "ref": "NL-0199",
+      "name": "Leersumse veld Nature Reserve",
+      "lat": 52.0352,
+      "lon": 5.43371,
+      "grid": "JO22ra"
+    },
+    {
+      "ref": "NL-0200",
+      "name": "Amerongse Berg Nature Reserve",
+      "lat": 52.008,
+      "lon": 5.48293,
+      "grid": "JO22ra"
+    },
+    {
+      "ref": "NL-0210",
+      "name": "Boswachterij Austerlitz Park",
+      "lat": 52.0934,
+      "lon": 5.31817,
+      "grid": "JO22pc"
+    },
+    {
+      "ref": "NL-0211",
+      "name": "Grebbelinie National Park",
+      "lat": 52.0496,
+      "lon": 5.55666,
+      "grid": "JO22sb"
+    },
+    {
+      "ref": "NL-0217",
+      "name": "De Westbroekse Zodden National Park",
+      "lat": 52.1796,
+      "lon": 5.14059,
+      "grid": "JO22ne"
+    },
+    {
+      "ref": "NL-0219",
+      "name": "Sluiswaai Nature Reserve",
+      "lat": 52.2751,
+      "lon": 5.29699,
+      "grid": "JO22pg"
+    },
+    {
+      "ref": "NL-0226",
+      "name": "Panbos Park",
+      "lat": 52.1141,
+      "lon": 5.22617,
+      "grid": "JO22oc"
+    },
+    {
+      "ref": "NL-0232",
+      "name": "Molenpolder Natura 2000",
+      "lat": 52.146,
+      "lon": 5.09408,
+      "grid": "JO22nd"
+    },
+    {
+      "ref": "NL-0236",
+      "name": "Birkhoven Natura 2000",
+      "lat": 52.1553,
+      "lon": 5.34057,
+      "grid": "JO22qd"
+    },
+    {
+      "ref": "NL-0238",
+      "name": "Eemvallei Park",
+      "lat": 52.2467,
+      "lon": 5.31222,
+      "grid": "JO22pf"
+    },
+    {
+      "ref": "NL-0250",
+      "name": "De Schammer Natura 2000",
+      "lat": 52.1514,
+      "lon": 5.4189,
+      "grid": "JO22rd"
+    },
+    {
+      "ref": "NL-0258",
+      "name": "Plantage Willem III Provincial Nature Reserve",
+      "lat": 51.9819,
+      "lon": 5.52535,
+      "grid": "JO21sx"
+    },
+    {
+      "ref": "NL-0259",
+      "name": "Elster Buitenwaarden Provincial Park",
+      "lat": 51.9786,
+      "lon": 5.51167,
+      "grid": "JO21sx"
+    },
+    {
+      "ref": "NL-0261",
+      "name": "Fort bij ’t Hemeltje Historic Site",
+      "lat": 52.0497,
+      "lon": 5.14527,
+      "grid": "JO22nb"
+    },
+    {
+      "ref": "NL-0264",
+      "name": "Zuiderzeepad (LAW 8) National Recreation Trail",
+      "lat": 52.9694,
+      "lon": 5.10834,
+      "grid": "JO22nx"
+    },
+    {
+      "ref": "NL-0265",
+      "name": "Eiland de Bol Natura 2000",
+      "lat": 51.9511,
+      "lon": 4.92498,
+      "grid": "JO21lw"
+    },
+    {
+      "ref": "NL-0267",
+      "name": "Het park rondom Kasteel Groeneveld Landscape Park",
+      "lat": 52.2178,
+      "lon": 5.25423,
+      "grid": "JO22pf"
+    },
+    {
+      "ref": "NL-0268",
+      "name": "Fort bij Vechten Historic Site",
+      "lat": 52.0593,
+      "lon": 5.1668,
+      "grid": "JO22ob"
+    },
+    {
+      "ref": "NL-0269",
+      "name": "Werk aan de Waalse Wetering Historic Site",
+      "lat": 51.9975,
+      "lon": 5.15148,
+      "grid": "JO21nx"
+    },
+    {
+      "ref": "NL-0280",
+      "name": "Werk aan de Groeneweg World Heritage Site",
+      "lat": 51.9715,
+      "lon": 5.18467,
+      "grid": "JO21ox"
+    },
+    {
+      "ref": "NL-0283",
+      "name": "Eemmeer & Gooimeer Zuidoever Natura 2000",
+      "lat": 52.3011,
+      "lon": 5.17913,
+      "grid": "JO22oh"
+    },
+    {
+      "ref": "NL-0305",
+      "name": "Park Vliegbasis Soesterberg Park",
+      "lat": 52.1307,
+      "lon": 5.26216,
+      "grid": "JO22pd"
+    },
+    {
+      "ref": "NL-0306",
+      "name": "Fort bij Nigtevecht World Heritage Site",
+      "lat": 52.2754,
+      "lon": 5.0171,
+      "grid": "JO22mg"
+    }
+  ],
+  "Noord-Holland": [
+    {
+      "ref": "NL-0010",
+      "name": "Dunes of Texel National Park",
+      "lat": 53.0753,
+      "lon": 4.7434,
+      "grid": "JO23ib"
+    },
+    {
+      "ref": "NL-0011",
+      "name": "Zuid-Kennemerland National Park",
+      "lat": 52.3962,
+      "lon": 4.59318,
+      "grid": "JO22hj"
+    },
+    {
+      "ref": "NL-0034",
+      "name": "Duinen vogelenzang Provincial Park",
+      "lat": 52.3469,
+      "lon": 4.58238,
+      "grid": "JO22gi"
+    },
+    {
+      "ref": "NL-0049",
+      "name": "Naardermeer Provincial Park",
+      "lat": 52.2921,
+      "lon": 5.14297,
+      "grid": "JO22nh"
+    },
+    {
+      "ref": "NL-0050",
+      "name": "Schoorlse Duinen Provincial Park",
+      "lat": 52.7026,
+      "lon": 4.65176,
+      "grid": "JO22hq"
+    },
+    {
+      "ref": "NL-0051",
+      "name": "Duinen bij Bergen Provincial Park",
+      "lat": 52.6437,
+      "lon": 4.64755,
+      "grid": "JO22hp"
+    },
+    {
+      "ref": "NL-0078",
+      "name": "Ilperveld, Varkensland, Oostzanerveld & Twiske Provincial Park",
+      "lat": 52.4407,
+      "lon": 4.94916,
+      "grid": "JO22lk"
+    },
+    {
+      "ref": "NL-0079",
+      "name": "Eilandspolder Provincial Park",
+      "lat": 52.5707,
+      "lon": 4.81849,
+      "grid": "JO22jn"
+    },
+    {
+      "ref": "NL-0092",
+      "name": "Zwanenwater & Pettemerduinen Provincial Park",
+      "lat": 52.8303,
+      "lon": 4.70358,
+      "grid": "JO22it"
+    },
+    {
+      "ref": "NL-0104",
+      "name": "Wormer- en Jisperveld & Kalverpolder Provincial Park",
+      "lat": 52.5025,
+      "lon": 4.79782,
+      "grid": "JO22jm"
+    },
+    {
+      "ref": "NL-0165",
+      "name": "Het Amsterdamse Bos Landscape Park",
+      "lat": 52.3181,
+      "lon": 4.83342,
+      "grid": "JO22kh"
+    },
+    {
+      "ref": "NL-0166",
+      "name": "Vondelpark Recreation Park",
+      "lat": 52.3579,
+      "lon": 4.86747,
+      "grid": "JO22ki"
+    },
+    {
+      "ref": "NL-0169",
+      "name": "Forteiland Pampus World Heritage Site",
+      "lat": 52.3648,
+      "lon": 5.06893,
+      "grid": "JO22mi"
+    },
+    {
+      "ref": "NL-0170",
+      "name": "Marken Park",
+      "lat": 52.4606,
+      "lon": 5.11351,
+      "grid": "JO22nl"
+    },
+    {
+      "ref": "NL-0221",
+      "name": "De Weelen Lutjebroek Provincial Park",
+      "lat": 52.713,
+      "lon": 5.19587,
+      "grid": "JO22or"
+    },
+    {
+      "ref": "NL-0222",
+      "name": "Robbenoordbos Provincial Park",
+      "lat": 52.9153,
+      "lon": 5.04547,
+      "grid": "JO22mv"
+    },
+    {
+      "ref": "NL-0228",
+      "name": "Bussummerheide Park",
+      "lat": 52.2611,
+      "lon": 5.18447,
+      "grid": "JO22og"
+    },
+    {
+      "ref": "NL-0229",
+      "name": "Goois Natuurreservaat 't Harde Park",
+      "lat": 52.2797,
+      "lon": 5.25113,
+      "grid": "JO22pg"
+    },
+    {
+      "ref": "NL-0230",
+      "name": "Het Streekbos National Park",
+      "lat": 52.713,
+      "lon": 5.25233,
+      "grid": "JO22pr"
+    },
+    {
+      "ref": "NL-0254",
+      "name": "De Vooroever Wetland Reserve",
+      "lat": 52.7624,
+      "lon": 5.11945,
+      "grid": "JO22ns"
+    },
+    {
+      "ref": "NL-0263",
+      "name": "UNESCO Werelderfgoed Droogmakerij de Beemster (Beemsterpolder) Nature and Landscape Complex",
+      "lat": 52.5482,
+      "lon": 4.91278,
+      "grid": "JO22kn"
+    },
+    {
+      "ref": "NL-0264",
+      "name": "Zuiderzeepad (LAW 8) National Recreation Trail",
+      "lat": 52.9694,
+      "lon": 5.10834,
+      "grid": "JO22nx"
+    },
+    {
+      "ref": "NL-0283",
+      "name": "Eemmeer & Gooimeer Zuidoever Natura 2000",
+      "lat": 52.3011,
+      "lon": 5.17913,
+      "grid": "JO22oh"
+    },
+    {
+      "ref": "NL-0297",
+      "name": "Pionierspad National Recreation Trail",
+      "lat": 52.4432,
+      "lon": 5.43821,
+      "grid": "JO22rk"
+    },
+    {
+      "ref": "NL-0307",
+      "name": "Spiegelplas Natura 2000",
+      "lat": 52.267,
+      "lon": 5.0596,
+      "grid": "JO22mg"
+    },
+    {
+      "ref": "NL-0308",
+      "name": "Diemerbos Park",
+      "lat": 52.327,
+      "lon": 4.99638,
+      "grid": "JO22lh"
+    },
+    {
+      "ref": "NL-0311",
+      "name": "Purmerbos Park",
+      "lat": 52.476,
+      "lon": 4.9728,
+      "grid": "JO22ll"
+    },
+    {
+      "ref": "NL-0312",
+      "name": "Polder Zeevang Natura 2000",
+      "lat": 52.5476,
+      "lon": 4.9856,
+      "grid": "JO22ln"
+    },
+    {
+      "ref": "NL-0317",
+      "name": "Waddenzee UNESCO Geopark",
+      "lat": 53.2821,
+      "lon": 5.34223,
+      "grid": "JO23qg"
+    }
+  ],
+  "Zeeland": [
+    {
+      "ref": "NL-0012",
+      "name": "Oosterschelde National Park",
+      "lat": 51.6012,
+      "lon": 4.01017,
+      "grid": "JO21ao"
+    },
+    {
+      "ref": "NL-0060",
+      "name": "Verdronken Land Van Saeftinge Provincial Park",
+      "lat": 51.3285,
+      "lon": 4.1477,
+      "grid": "JO21bh"
+    },
+    {
+      "ref": "NL-0070",
+      "name": "Yerseke en Kapelse Moer Provincial Park",
+      "lat": 51.4961,
+      "lon": 4.01752,
+      "grid": "JO21al"
+    },
+    {
+      "ref": "NL-0071",
+      "name": "Clingse bossen Provincial Park",
+      "lat": 51.258,
+      "lon": 4.0791,
+      "grid": "JO21ag"
+    },
+    {
+      "ref": "NL-0072",
+      "name": "Margaretha polder Provincial Park",
+      "lat": 51.3412,
+      "lon": 3.87439,
+      "grid": "JO11wi"
+    },
+    {
+      "ref": "NL-0073",
+      "name": "Braakman Noorderbossen Provincial Park",
+      "lat": 51.3327,
+      "lon": 3.73431,
+      "grid": "JO11uh"
+    },
+    {
+      "ref": "NL-0076",
+      "name": "Canisvliet Provincial Park",
+      "lat": 51.2217,
+      "lon": 3.811,
+      "grid": "JO11vf"
+    },
+    {
+      "ref": "NL-0093",
+      "name": "Kop van Schouwen Provincial Park",
+      "lat": 51.6929,
+      "lon": 3.70937,
+      "grid": "JO11uq"
+    },
+    {
+      "ref": "NL-0094",
+      "name": "Manteling van Walcheren Provincial Park",
+      "lat": 51.5726,
+      "lon": 3.53185,
+      "grid": "JO11sn"
+    },
+    {
+      "ref": "NL-0234",
+      "name": "Verdronken Zwarte Polder Natura 2000",
+      "lat": 51.3862,
+      "lon": 3.44129,
+      "grid": "JO11rj"
+    },
+    {
+      "ref": "NL-0235",
+      "name": "Schakerloopolder Marine Protected Area",
+      "lat": 51.5203,
+      "lon": 4.17414,
+      "grid": "JO21cm"
+    },
+    {
+      "ref": "NL-0266",
+      "name": "Het Zwin & Kievittepolder National Park",
+      "lat": 51.3649,
+      "lon": 3.37211,
+      "grid": "JO11qi"
+    }
+  ],
+  "Noord-Brabant": [
+    {
+      "ref": "NL-0013",
+      "name": "De Biesbosch National Park",
+      "lat": 51.7507,
+      "lon": 4.76319,
+      "grid": "JO21js"
+    },
+    {
+      "ref": "NL-0014",
+      "name": "Grenspark Kalmthoutse Heide Park",
+      "lat": 51.402,
+      "lon": 4.39033,
+      "grid": "JO21ej"
+    },
+    {
+      "ref": "NL-0015",
+      "name": "De Loonse en Drunense Duinen Natura 2000",
+      "lat": 51.6534,
+      "lon": 5.12886,
+      "grid": "JO21np"
+    },
+    {
+      "ref": "NL-0016",
+      "name": "Nationaal Park De Peel National Park",
+      "lat": 51.3661,
+      "lon": 5.812,
+      "grid": "JO21vi"
+    },
+    {
+      "ref": "NL-0026",
+      "name": "Strabrecht Heide Park",
+      "lat": 51.4017,
+      "lon": 5.61267,
+      "grid": "JO21tj"
+    },
+    {
+      "ref": "NL-0041",
+      "name": "Mortelen Park",
+      "lat": 51.5409,
+      "lon": 5.33187,
+      "grid": "JO21pm"
+    },
+    {
+      "ref": "NL-0048",
+      "name": "Boswachterij Dorst Provincial Park",
+      "lat": 51.6033,
+      "lon": 4.87907,
+      "grid": "JO21ko"
+    },
+    {
+      "ref": "NL-0055",
+      "name": "Kampina Park",
+      "lat": 51.5667,
+      "lon": 5.28533,
+      "grid": "JO21pn"
+    },
+    {
+      "ref": "NL-0057",
+      "name": "Brabantse Wal - Staartse duinen Provincial Park",
+      "lat": 51.4176,
+      "lon": 4.37726,
+      "grid": "JO21ek"
+    },
+    {
+      "ref": "NL-0080",
+      "name": "Deurnsche Peel & Mariapeel Provincial Park",
+      "lat": 51.4161,
+      "lon": 5.9156,
+      "grid": "JO21wj"
+    },
+    {
+      "ref": "NL-0095",
+      "name": "Weerter- en Budelerbergen & Ringselven Natura 2000",
+      "lat": 51.2667,
+      "lon": 5.63347,
+      "grid": "JO21tg"
+    },
+    {
+      "ref": "NL-0106",
+      "name": "Pompveld Provincial Park",
+      "lat": 51.7624,
+      "lon": 5.03874,
+      "grid": "JO21ms"
+    },
+    {
+      "ref": "NL-0107",
+      "name": "Ulvenhoutsebos Provincial Park",
+      "lat": 51.5503,
+      "lon": 4.81055,
+      "grid": "JO21jn"
+    },
+    {
+      "ref": "NL-0108",
+      "name": "Regte Heide & Riels Laag Provincial Park",
+      "lat": 51.513,
+      "lon": 5.02109,
+      "grid": "JO21mm"
+    },
+    {
+      "ref": "NL-0110",
+      "name": "Zoommeer - Molenplaat Provincial Park",
+      "lat": 51.4919,
+      "lon": 4.23744,
+      "grid": "JO21cl"
+    },
+    {
+      "ref": "NL-0116",
+      "name": "Oeffelter Meent - Maasheggen Provincial Park",
+      "lat": 51.63,
+      "lon": 5.99929,
+      "grid": "JO21xp"
+    },
+    {
+      "ref": "NL-0119",
+      "name": "Moerputten Provincial Park",
+      "lat": 51.688,
+      "lon": 5.24795,
+      "grid": "JO21oq"
+    },
+    {
+      "ref": "NL-0120",
+      "name": "Langstraat Provincial Park",
+      "lat": 51.6878,
+      "lon": 4.99893,
+      "grid": "JO21lq"
+    },
+    {
+      "ref": "NL-0128",
+      "name": "Leendebos Park",
+      "lat": 51.3286,
+      "lon": 5.51003,
+      "grid": "JO21sh"
+    },
+    {
+      "ref": "NL-0193",
+      "name": "Kerkeindse heide Park",
+      "lat": 51.543,
+      "lon": 5.14501,
+      "grid": "JO21nn"
+    },
+    {
+      "ref": "NL-0223",
+      "name": "kornsche boezem Natura 2000",
+      "lat": 51.7484,
+      "lon": 4.95881,
+      "grid": "JO21lr"
+    },
+    {
+      "ref": "NL-0225",
+      "name": "Groesplaat Provincial Park",
+      "lat": 51.8181,
+      "lon": 4.97381,
+      "grid": "JO21lt"
+    },
+    {
+      "ref": "NL-0233",
+      "name": "Stiphoutse Bossen Nature Park",
+      "lat": 51.4895,
+      "lon": 5.58374,
+      "grid": "JO21tl"
+    },
+    {
+      "ref": "NL-0252",
+      "name": "Mastbos Provincial Park",
+      "lat": 51.5453,
+      "lon": 4.76433,
+      "grid": "JO21jn"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0278",
+      "name": "Maashorst Provincial Park",
+      "lat": 51.7236,
+      "lon": 5.59953,
+      "grid": "JO21tr"
+    },
+    {
+      "ref": "NL-0284",
+      "name": "Sonse Heide Park",
+      "lat": 51.5184,
+      "lon": 5.45738,
+      "grid": "JO21rm"
+    },
+    {
+      "ref": "NL-0299",
+      "name": "Galgeven Park",
+      "lat": 51.5529,
+      "lon": 5.15377,
+      "grid": "JO21nn"
+    },
+    {
+      "ref": "NL-0300",
+      "name": "Hondsberg Park",
+      "lat": 51.56,
+      "lon": 5.17051,
+      "grid": "JO21on"
+    },
+    {
+      "ref": "NL-0301",
+      "name": "De Brand Park",
+      "lat": 51.6213,
+      "lon": 5.13228,
+      "grid": "JO21no"
+    },
+    {
+      "ref": "NL-0302",
+      "name": "Rovertsche Heide Park",
+      "lat": 51.464,
+      "lon": 5.10375,
+      "grid": "JO21nl"
+    },
+    {
+      "ref": "NL-0303",
+      "name": "Landgoed De Utrecht Landscape Park",
+      "lat": 51.4347,
+      "lon": 5.13176,
+      "grid": "JO21nk"
+    },
+    {
+      "ref": "NL-0304",
+      "name": "Gorp en Roovert Park",
+      "lat": 51.483,
+      "lon": 5.08456,
+      "grid": "JO21nl"
+    },
+    {
+      "ref": "NL-0314",
+      "name": "Vlijmens Ven Natura 2000",
+      "lat": 51.6837,
+      "lon": 5.20775,
+      "grid": "JO21oq"
+    },
+    {
+      "ref": "NL-0315",
+      "name": "Bossche Broek Natura 2000",
+      "lat": 51.6782,
+      "lon": 5.30239,
+      "grid": "JO21pq"
+    }
+  ],
+  "Limburg": [
+    {
+      "ref": "NL-0017",
+      "name": "De Maasduinen National Park",
+      "lat": 51.5832,
+      "lon": 6.09817,
+      "grid": "JO31bn"
+    },
+    {
+      "ref": "NL-0018",
+      "name": "Meinweg National Park",
+      "lat": 51.1563,
+      "lon": 6.08517,
+      "grid": "JO31bd"
+    },
+    {
+      "ref": "NL-0037",
+      "name": "Kunderberg Provincial Park",
+      "lat": 50.869,
+      "lon": 5.94565,
+      "grid": "JO20xu"
+    },
+    {
+      "ref": "NL-0080",
+      "name": "Deurnsche Peel & Mariapeel Provincial Park",
+      "lat": 51.4161,
+      "lon": 5.9156,
+      "grid": "JO21wj"
+    },
+    {
+      "ref": "NL-0081",
+      "name": "Brunssummerheide Provincial Park",
+      "lat": 50.9284,
+      "lon": 5.99931,
+      "grid": "JO20xw"
+    },
+    {
+      "ref": "NL-0095",
+      "name": "Weerter- en Budelerbergen & Ringselven Natura 2000",
+      "lat": 51.2667,
+      "lon": 5.63347,
+      "grid": "JO21tg"
+    },
+    {
+      "ref": "NL-0096",
+      "name": "Savelsbos Provincial Park",
+      "lat": 50.8175,
+      "lon": 5.74816,
+      "grid": "JO20ut"
+    },
+    {
+      "ref": "NL-0097",
+      "name": "Sint Pietersberg & Jekerdal Provincial Park",
+      "lat": 50.8268,
+      "lon": 5.68698,
+      "grid": "JO20ut"
+    },
+    {
+      "ref": "NL-0109",
+      "name": "Bergse Heide Park",
+      "lat": 50.8626,
+      "lon": 5.79236,
+      "grid": "JO20vu"
+    },
+    {
+      "ref": "NL-0117",
+      "name": "Boschhuizerbergen Provincial Park",
+      "lat": 51.5494,
+      "lon": 6.0102,
+      "grid": "JO31an"
+    },
+    {
+      "ref": "NL-0118",
+      "name": "Geleenbeekdal Provincial Park",
+      "lat": 50.9281,
+      "lon": 5.89742,
+      "grid": "JO20ww"
+    },
+    {
+      "ref": "NL-0126",
+      "name": "Landgoed De Hamert Provincial Park",
+      "lat": 51.5078,
+      "lon": 6.17087,
+      "grid": "JO31cm"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0276",
+      "name": "Mookerheide Provincial Park",
+      "lat": 51.7481,
+      "lon": 5.90148,
+      "grid": "JO21wr"
+    },
+    {
+      "ref": "NL-0281",
+      "name": "Groote Heide (Venlo) Park",
+      "lat": 51.3636,
+      "lon": 6.21641,
+      "grid": "JO31ci"
+    },
+    {
+      "ref": "NL-0316",
+      "name": "Geuldal Park",
+      "lat": 50.7801,
+      "lon": 5.92188,
+      "grid": "JO20xs"
+    }
+  ],
+  "Flevoland": [
+    {
+      "ref": "NL-0019",
+      "name": "Nieuw Land National Park",
+      "lat": 52.4456,
+      "lon": 5.28429,
+      "grid": "JO22pk"
+    },
+    {
+      "ref": "NL-0028",
+      "name": "Oostvaardersplassen Park",
+      "lat": 52.4578,
+      "lon": 5.4206,
+      "grid": "JO22rk"
+    },
+    {
+      "ref": "NL-0030",
+      "name": "Horsterwold Provincial Park",
+      "lat": 52.3134,
+      "lon": 5.46957,
+      "grid": "JO22rh"
+    },
+    {
+      "ref": "NL-0067",
+      "name": "Schokland Provincial Park",
+      "lat": 52.6389,
+      "lon": 5.77306,
+      "grid": "JO22vp"
+    },
+    {
+      "ref": "NL-0105",
+      "name": "Lepelaarplassen Provincial Park",
+      "lat": 52.4057,
+      "lon": 5.21521,
+      "grid": "JO22oj"
+    },
+    {
+      "ref": "NL-0171",
+      "name": "Marker Wadden Provincial Park",
+      "lat": 52.5832,
+      "lon": 5.36832,
+      "grid": "JO22qn"
+    },
+    {
+      "ref": "NL-0194",
+      "name": "Roggebotzand National Park",
+      "lat": 52.5639,
+      "lon": 5.81387,
+      "grid": "JO22vn"
+    },
+    {
+      "ref": "NL-0237",
+      "name": "De Groene Kathedraal Natura 2000",
+      "lat": 52.322,
+      "lon": 5.31732,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0239",
+      "name": "museumbos Landscape Park",
+      "lat": 52.3228,
+      "lon": 5.29173,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0240",
+      "name": "Labyrint (museumbos) Landscape Park",
+      "lat": 52.327,
+      "lon": 5.28126,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0241",
+      "name": "Bos der verandering (museumbos) Landscape Park",
+      "lat": 52.3264,
+      "lon": 5.28288,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0242",
+      "name": "Zalm in blik (museumbos) Landscape Park",
+      "lat": 52.3259,
+      "lon": 5.28461,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0243",
+      "name": "Kromslootpark National Park",
+      "lat": 52.3373,
+      "lon": 5.17639,
+      "grid": "JO22oi"
+    },
+    {
+      "ref": "NL-0244",
+      "name": "Almere Boven (museumbos) Landscape Park",
+      "lat": 52.3236,
+      "lon": 5.29126,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0245",
+      "name": "Vlierbomenbloesembessenbos (museumbos) National Park",
+      "lat": 52.3224,
+      "lon": 5.29017,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0246",
+      "name": "Tempo (museumbos) Landscape Park",
+      "lat": 52.3216,
+      "lon": 5.2934,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0247",
+      "name": "In eenzaamheid (museumbos) Landscape Park",
+      "lat": 52.318,
+      "lon": 5.29561,
+      "grid": "JO22ph"
+    },
+    {
+      "ref": "NL-0253",
+      "name": "Hulkesteinse bos National Park",
+      "lat": 52.264,
+      "lon": 5.42101,
+      "grid": "JO22rg"
+    },
+    {
+      "ref": "NL-0256",
+      "name": "Kuinderbos Park",
+      "lat": 52.7786,
+      "lon": 5.82475,
+      "grid": "JO22vs"
+    },
+    {
+      "ref": "NL-0257",
+      "name": "Rijksmonument Waterloopbos National Park",
+      "lat": 52.6727,
+      "lon": 5.91761,
+      "grid": "JO22xq"
+    },
+    {
+      "ref": "NL-0285",
+      "name": "Wisentbos Park",
+      "lat": 52.5195,
+      "lon": 5.67809,
+      "grid": "JO22um"
+    },
+    {
+      "ref": "NL-0286",
+      "name": "Swifterbos Park",
+      "lat": 52.5641,
+      "lon": 5.62389,
+      "grid": "JO22tn"
+    },
+    {
+      "ref": "NL-0287",
+      "name": "Reve-Abbert State Forest",
+      "lat": 52.5159,
+      "lon": 5.84764,
+      "grid": "JO22wm"
+    },
+    {
+      "ref": "NL-0288",
+      "name": "Kievitslanden Park",
+      "lat": 52.4021,
+      "lon": 5.64901,
+      "grid": "JO22tj"
+    },
+    {
+      "ref": "NL-0289",
+      "name": "Harderbos Park",
+      "lat": 52.3962,
+      "lon": 5.61123,
+      "grid": "JO22tj"
+    },
+    {
+      "ref": "NL-0290",
+      "name": "Spijkbos Park",
+      "lat": 52.4469,
+      "lon": 5.77763,
+      "grid": "JO22vk"
+    },
+    {
+      "ref": "NL-0291",
+      "name": "Spijk-Bremerberg Park",
+      "lat": 52.4289,
+      "lon": 5.7318,
+      "grid": "JO22uk"
+    },
+    {
+      "ref": "NL-0292",
+      "name": "Observatorium Robert Morris Scenic Site",
+      "lat": 52.5496,
+      "lon": 5.56595,
+      "grid": "JO22sn"
+    },
+    {
+      "ref": "NL-0293",
+      "name": "Aardzee Scenic Site",
+      "lat": 52.397,
+      "lon": 5.45253,
+      "grid": "JO22rj"
+    },
+    {
+      "ref": "NL-0295",
+      "name": "Kamperhoek Park",
+      "lat": 52.6009,
+      "lon": 5.64084,
+      "grid": "JO22to"
+    },
+    {
+      "ref": "NL-0297",
+      "name": "Pionierspad National Recreation Trail",
+      "lat": 52.4432,
+      "lon": 5.43821,
+      "grid": "JO22rk"
+    }
+  ],
+  "Groningen": [
+    {
+      "ref": "NL-0020",
+      "name": "Lauwersmeer National Park",
+      "lat": 53.3797,
+      "lon": 6.18891,
+      "grid": "JO33cj"
+    },
+    {
+      "ref": "NL-0065",
+      "name": "Westerwolde -Overdiep Provincial Park",
+      "lat": 52.9493,
+      "lon": 7.12934,
+      "grid": "JO32nw"
+    },
+    {
+      "ref": "NL-0066",
+      "name": "Ennemaborgh Provincial Park",
+      "lat": 53.1924,
+      "lon": 6.99988,
+      "grid": "JO33le"
+    },
+    {
+      "ref": "NL-0255",
+      "name": "Biessumerbos Natura 2000",
+      "lat": 53.3327,
+      "lon": 6.88367,
+      "grid": "JO33kh"
+    },
+    {
+      "ref": "NL-0260",
+      "name": "Pieterpad (LAW 9) National Recreation Trail",
+      "lat": 53.4,
+      "lon": 6.45331,
+      "grid": "JO33fj"
+    },
+    {
+      "ref": "NL-0298",
+      "name": "Groningse stuwwallen “De Hoogte” Nature Park",
+      "lat": 53.1623,
+      "lon": 7.00056,
+      "grid": "JO33md"
+    },
+    {
+      "ref": "NL-0310",
+      "name": "de Hondsrug UNESCO Geopark",
+      "lat": 52.9987,
+      "lon": 6.62174,
+      "grid": "JO32hx"
+    },
+    {
+      "ref": "NL-0317",
+      "name": "Waddenzee UNESCO Geopark",
+      "lat": 53.2821,
+      "lon": 5.34223,
+      "grid": "JO23qg"
+    }
+  ],
+  "Zuid-Holland": [
+    {
+      "ref": "NL-0025",
+      "name": "Meijendel Natura 2000",
+      "lat": 52.126,
+      "lon": 4.33878,
+      "grid": "JO22ed"
+    },
+    {
+      "ref": "NL-0033",
+      "name": "Wilhelminapark Park",
+      "lat": 52.0265,
+      "lon": 4.3302,
+      "grid": "JO22da"
+    },
+    {
+      "ref": "NL-0039",
+      "name": "Westduinpark & Wapendal Coastal Park",
+      "lat": 52.084,
+      "lon": 4.24797,
+      "grid": "JO22cc"
+    },
+    {
+      "ref": "NL-0054",
+      "name": "Nieuwkoopse Plassen Provincial Park",
+      "lat": 52.152,
+      "lon": 4.80589,
+      "grid": "JO22jd"
+    },
+    {
+      "ref": "NL-0068",
+      "name": "Tiengemeten Provincial Park",
+      "lat": 51.7377,
+      "lon": 4.31479,
+      "grid": "JO21dr"
+    },
+    {
+      "ref": "NL-0098",
+      "name": "Den Haag Zuiderpark Landscape Park",
+      "lat": 52.0564,
+      "lon": 4.28628,
+      "grid": "JO22db"
+    },
+    {
+      "ref": "NL-0121",
+      "name": "Duinen Goeree & Kwade Hoek Provincial Park",
+      "lat": 51.8388,
+      "lon": 4.02349,
+      "grid": "JO21au"
+    },
+    {
+      "ref": "NL-0122",
+      "name": "Voornes Duin Provincial Park",
+      "lat": 51.919,
+      "lon": 4.05853,
+      "grid": "JO21aw"
+    },
+    {
+      "ref": "NL-0123",
+      "name": "Kinderdijk: UNESCO Werelderfgoed 5(1)(g) Reserve",
+      "lat": 51.8804,
+      "lon": 4.64074,
+      "grid": "JO21hv"
+    },
+    {
+      "ref": "NL-0136",
+      "name": "Zoetermeerse Buytenpark Provincial Park",
+      "lat": 52.0725,
+      "lon": 4.45538,
+      "grid": "JO22fb"
+    },
+    {
+      "ref": "NL-0137",
+      "name": "Zoetermeerse Westerpark Provincial Park",
+      "lat": 52.0581,
+      "lon": 4.44986,
+      "grid": "JO22fb"
+    },
+    {
+      "ref": "NL-0138",
+      "name": "Van Tuyll Provincial Park",
+      "lat": 52.0492,
+      "lon": 4.52029,
+      "grid": "JO22gb"
+    },
+    {
+      "ref": "NL-0139",
+      "name": "De Wijdse Weide Provincial Park",
+      "lat": 52.0753,
+      "lon": 4.50825,
+      "grid": "JO22gb"
+    },
+    {
+      "ref": "NL-0140",
+      "name": "Prielenbos Provincial Park",
+      "lat": 52.0926,
+      "lon": 4.50299,
+      "grid": "JO22gc"
+    },
+    {
+      "ref": "NL-0141",
+      "name": "Abtswoude bos Natura 2000",
+      "lat": 51.9751,
+      "lon": 4.36455,
+      "grid": "JO21ex"
+    },
+    {
+      "ref": "NL-0142",
+      "name": "Haagse Bosch Park",
+      "lat": 52.0893,
+      "lon": 4.32939,
+      "grid": "JO22dc"
+    },
+    {
+      "ref": "NL-0143",
+      "name": "De Balij Park",
+      "lat": 52.0399,
+      "lon": 4.44957,
+      "grid": "JO22fa"
+    },
+    {
+      "ref": "NL-0144",
+      "name": "Scheveningse Bosjes Park",
+      "lat": 52.0962,
+      "lon": 4.29195,
+      "grid": "JO22dc"
+    },
+    {
+      "ref": "NL-0145",
+      "name": "Madestein Park",
+      "lat": 52.0443,
+      "lon": 4.22099,
+      "grid": "JO22cb"
+    },
+    {
+      "ref": "NL-0146",
+      "name": "Landtong De Punt State Harbor",
+      "lat": 51.9688,
+      "lon": 4.12711,
+      "grid": "JO21bx"
+    },
+    {
+      "ref": "NL-0147",
+      "name": "Dobbeplas Park",
+      "lat": 52.0337,
+      "lon": 4.407,
+      "grid": "JO22ea"
+    },
+    {
+      "ref": "NL-0148",
+      "name": "Delftse Hout Recreation Park",
+      "lat": 52.0222,
+      "lon": 4.37517,
+      "grid": "JO22ea"
+    },
+    {
+      "ref": "NL-0149",
+      "name": "Hoge Bergse Bos Provincial Park",
+      "lat": 51.9772,
+      "lon": 4.54094,
+      "grid": "JO21gx"
+    },
+    {
+      "ref": "NL-0150",
+      "name": "Lage Bergse Bos Provincial Park",
+      "lat": 51.9701,
+      "lon": 4.51355,
+      "grid": "JO21gx"
+    },
+    {
+      "ref": "NL-0151",
+      "name": "Eendragtspolder Provincial Park",
+      "lat": 51.9929,
+      "lon": 4.56767,
+      "grid": "JO21gx"
+    },
+    {
+      "ref": "NL-0152",
+      "name": "Hitland Park",
+      "lat": 51.9494,
+      "lon": 4.6259,
+      "grid": "JO21hw"
+    },
+    {
+      "ref": "NL-0153",
+      "name": "Schollebos Park",
+      "lat": 51.9451,
+      "lon": 4.58322,
+      "grid": "JO21gw"
+    },
+    {
+      "ref": "NL-0154",
+      "name": "Kralingse Bos Park",
+      "lat": 51.9382,
+      "lon": 4.5255,
+      "grid": "JO21gw"
+    },
+    {
+      "ref": "NL-0155",
+      "name": "Loetbos Natura 2000",
+      "lat": 51.9265,
+      "lon": 4.69593,
+      "grid": "JO21iw"
+    },
+    {
+      "ref": "NL-0156",
+      "name": "Stormpoldervloedbos Marine Park",
+      "lat": 51.9061,
+      "lon": 4.58599,
+      "grid": "JO21hv"
+    },
+    {
+      "ref": "NL-0157",
+      "name": "Eiland van Brienenoord Provincial Park",
+      "lat": 51.8993,
+      "lon": 4.53486,
+      "grid": "JO21gv"
+    },
+    {
+      "ref": "NL-0158",
+      "name": "Het Park Park",
+      "lat": 51.9065,
+      "lon": 4.4707,
+      "grid": "JO21fv"
+    },
+    {
+      "ref": "NL-0160",
+      "name": "Ackerdijkse Plassen Provincial Park",
+      "lat": 51.9791,
+      "lon": 4.40761,
+      "grid": "JO21ex"
+    },
+    {
+      "ref": "NL-0161",
+      "name": "Bentwoud Natura 2000",
+      "lat": 52.0688,
+      "lon": 4.58396,
+      "grid": "JO22hb"
+    },
+    {
+      "ref": "NL-0162",
+      "name": "Het Staelduinse Bos Park",
+      "lat": 51.9758,
+      "lon": 4.17051,
+      "grid": "JO21cx"
+    },
+    {
+      "ref": "NL-0163",
+      "name": "Klinkenbergerplas Provincial Park",
+      "lat": 52.2006,
+      "lon": 4.48894,
+      "grid": "JO22fe"
+    },
+    {
+      "ref": "NL-0164",
+      "name": "Koudenhoorn Provincial Park",
+      "lat": 52.1927,
+      "lon": 4.50516,
+      "grid": "JO22ge"
+    },
+    {
+      "ref": "NL-0172",
+      "name": "Rottemeren Park",
+      "lat": 52.0018,
+      "lon": 4.54738,
+      "grid": "JO22ga"
+    },
+    {
+      "ref": "NL-0173",
+      "name": "Het Kraaiennest Park",
+      "lat": 51.9681,
+      "lon": 4.27662,
+      "grid": "JO21dx"
+    },
+    {
+      "ref": "NL-0174",
+      "name": "Solleveld & Kapitelduinen Natura 2000",
+      "lat": 51.9891,
+      "lon": 4.1153,
+      "grid": "JO21bx"
+    },
+    {
+      "ref": "NL-0175",
+      "name": "Krabbeplas Park",
+      "lat": 51.9154,
+      "lon": 4.30415,
+      "grid": "JO21dv"
+    },
+    {
+      "ref": "NL-0176",
+      "name": "De Broekpolder Park",
+      "lat": 51.9264,
+      "lon": 4.32416,
+      "grid": "JO21dw"
+    },
+    {
+      "ref": "NL-0177",
+      "name": "Woudse Bos Park",
+      "lat": 52.0053,
+      "lon": 4.30779,
+      "grid": "JO22da"
+    },
+    {
+      "ref": "NL-0178",
+      "name": "Vlakte van Waalsdorp Natura 2000",
+      "lat": 52.1136,
+      "lon": 4.33479,
+      "grid": "JO22ec"
+    },
+    {
+      "ref": "NL-0179",
+      "name": "Vlietland Recreation Park",
+      "lat": 52.1106,
+      "lon": 4.45177,
+      "grid": "JO22fc"
+    },
+    {
+      "ref": "NL-0180",
+      "name": "Twaalfmorgen Reeuwijk Park",
+      "lat": 52.0257,
+      "lon": 4.77965,
+      "grid": "JO22ja"
+    },
+    {
+      "ref": "NL-0181",
+      "name": "Goudse Hout Park",
+      "lat": 52.0205,
+      "lon": 4.74029,
+      "grid": "JO22ia"
+    },
+    {
+      "ref": "NL-0182",
+      "name": "Oudeland van Strijen Park",
+      "lat": 51.7618,
+      "lon": 4.5155,
+      "grid": "JO21gs"
+    },
+    {
+      "ref": "NL-0183",
+      "name": "Polder Nieuw Schuddebeurs Park",
+      "lat": 51.8106,
+      "lon": 4.29653,
+      "grid": "JO21dt"
+    },
+    {
+      "ref": "NL-0184",
+      "name": "Het Kooisteebos Park",
+      "lat": 51.8268,
+      "lon": 4.16811,
+      "grid": "JO21ct"
+    },
+    {
+      "ref": "NL-0185",
+      "name": "Bernisse Park",
+      "lat": 51.8539,
+      "lon": 4.24491,
+      "grid": "JO21cu"
+    },
+    {
+      "ref": "NL-0186",
+      "name": "Quackjeswater Park",
+      "lat": 51.8477,
+      "lon": 4.07809,
+      "grid": "JO21au"
+    },
+    {
+      "ref": "NL-0187",
+      "name": "Brouwersdam Strand Park",
+      "lat": 51.7832,
+      "lon": 3.86651,
+      "grid": "JO11ws"
+    },
+    {
+      "ref": "NL-0188",
+      "name": "Voordelta Park",
+      "lat": 51.7638,
+      "lon": 3.849,
+      "grid": "JO11ws"
+    },
+    {
+      "ref": "NL-0189",
+      "name": "Leidsche Hout Park",
+      "lat": 52.177,
+      "lon": 4.47822,
+      "grid": "JO22fe"
+    },
+    {
+      "ref": "NL-0190",
+      "name": "De Houtkamp Park",
+      "lat": 52.1584,
+      "lon": 4.53194,
+      "grid": "JO22gd"
+    },
+    {
+      "ref": "NL-0191",
+      "name": "Zeeduinen Park",
+      "lat": 52.3118,
+      "lon": 4.48706,
+      "grid": "JO22fh"
+    },
+    {
+      "ref": "NL-0201",
+      "name": "estate Ockenburgh Park",
+      "lat": 52.0532,
+      "lon": 4.21884,
+      "grid": "JO22cb"
+    },
+    {
+      "ref": "NL-0202",
+      "name": "Hyacintenbos Ockenburgh Park",
+      "lat": 52.0519,
+      "lon": 4.21823,
+      "grid": "JO22cb"
+    },
+    {
+      "ref": "NL-0203",
+      "name": "Park Overvoorde Park",
+      "lat": 52.0447,
+      "lon": 4.30314,
+      "grid": "JO22db"
+    },
+    {
+      "ref": "NL-0204",
+      "name": "de Voorde Park",
+      "lat": 52.0417,
+      "lon": 4.30149,
+      "grid": "JO22db"
+    },
+    {
+      "ref": "NL-0205",
+      "name": "Hollands Duin National Park",
+      "lat": 52.1652,
+      "lon": 4.35811,
+      "grid": "JO22ed"
+    },
+    {
+      "ref": "NL-0206",
+      "name": "Berkheide Natura 2000",
+      "lat": 52.1688,
+      "lon": 4.37528,
+      "grid": "JO22ee"
+    },
+    {
+      "ref": "NL-0207",
+      "name": "Lentevreugd Natura 2000",
+      "lat": 52.1664,
+      "lon": 4.39485,
+      "grid": "JO22ed"
+    },
+    {
+      "ref": "NL-0208",
+      "name": "Pan van Persijn Natura 2000",
+      "lat": 52.177,
+      "lon": 4.39643,
+      "grid": "JO22ee"
+    },
+    {
+      "ref": "NL-0209",
+      "name": "Ganzenhoek Natura 2000",
+      "lat": 52.1594,
+      "lon": 4.35738,
+      "grid": "JO22ed"
+    },
+    {
+      "ref": "NL-0282",
+      "name": "het Bieslandse Bos Park",
+      "lat": 52.0293,
+      "lon": 4.41409,
+      "grid": "JO22ea"
+    }
+  ]
+}

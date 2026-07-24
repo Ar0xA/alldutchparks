@@ -1,0 +1,25 @@
+<footer>
+    <div class="footer-content">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-title">🇳🇱 {{ .Site.Title }}</div>
+                <p class="footer-tagline">Activations • Field Reports • Park Directory</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-heading">Quick Links</div>
+                <nav class="footer-nav">
+                    <a href="{{ "/" | relURL }}">Home</a>
+                    <a href="{{ "/parks/" | relURL }}">Parks</a>
+                    <a href="{{ "/map/" | relURL }}">Map</a>
+                    <a href="{{ "/activities/" | relURL }}">Activations</a>
+                    <a href="{{ "/fotos/" | relURL }}">Photos</a>
+                    <a href="{{ "/about/" | relURL }}">About</a>
+                </nav>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; {{ now.Year }} {{ .Site.Title }}. All rights reserved.</p>
+            <p class="footer-disclaimer">Not affiliated with Parks on the Air&reg; (POTA). Built with Hugo.</p>
+        </div>
+    </div>
+</footer>

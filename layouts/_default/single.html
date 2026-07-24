@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ .Title }} - {{ .Site.Title | default "alldutchparks.nl" }}</title>
+    {{ partial "head-meta.html" . }}
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet: powers the coordinate popup map -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+
+    <style>
+        :root {
+            --bg-body: #f3f6f4;
+            --bg-surface: #ffffff;
+            --primary: #2d5a27;
+            --primary-hover: #1e3d1a;
+            --accent: #e67e22;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --text-light: #718096;
+            --border-color: #e2e8f0;
+            
+            --radius-lg: 16px;
+            --radius-md: 12px;
+            --radius-sm: 8px;
+            --shadow-base: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            --transition: all 0.2s ease-in-out;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--primary);
+            color: white;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-content a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: var(--radius-sm);
+            transition: var(--transition);
+        }
+
+        .header-content a:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        /* --- Slideshow (CSS Only) --- */
+        .slideshow-container {
+            width: 100%;
+            height: 50vh;
+            position: relative;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .slides {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            animation: slideAnimation 15s infinite;
+        }
+
+        .slide {
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            object-fit: cover;
+            object-position: center;
+            flex-shrink: 0;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .slide::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            pointer-events: none;
+        }
+
+        @keyframes slideAnimation {
+            0% { transform: translateX(0%); }
+            10% { transform: translateX(0%); }
+            33% { transform: translateX(-100%); }
+            43% { transform: translateX(-100%); }
+            66% { transform: translateX(-200%); }
+            76% { transform: translateX(-200%); }
+            100% { transform: translateX(0%); }
+        }
+
+        .slideshow-dots {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        .dot.active {
+            background: #ffffff;
+        }
+
+        /* --- Lightbox / Vergroot foto --- */
+        .lightbox-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        .lightbox-overlay.active {
+            display: flex;
+        }
+
+        #lightbox-img {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: var(--radius-md);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            object-fit: contain;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+            color: white;
+            font-size: 45px;
+            font-weight: 300;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .lightbox-close:hover {
+            color: var(--accent);
+        }
+
+        /* --- Hoofdcontainer --- */
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        /* --- Artikel Header --- */
+        .article-header {
+            margin-bottom: 30px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #e2e8f0;
+            color: var(--primary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        .tag.pota-ref {
+            background: var(--accent);
+            color: white;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            line-height: 1.2;
+            margin-bottom: 10px;
+            color: var(--text-main);
+        }
+
+        .meta {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+
+        /* --- POTA Info Blok --- */
+        .pota-specs {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 25px;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-base);
+        }
+
+        .pota-specs h3 {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            color: var(--primary);
+            border-bottom: 2px solid #f3f6f4;
+            padding-bottom: 10px;
+        }
+
+        .spec-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .spec-icon {
+            font-size: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .spec-text h4 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-text p {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--text-main);
+        }
+
+        .grid-locator {
+            display: inline-block;
+            margin-top: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            color: var(--primary);
+            background: #eef3ec;
+            border: 1px solid #dbe7d6;
+            padding: 2px 8px;
+            border-radius: 6px;
+        }
+
+        .coords-link {
+            display: block;
+            width: fit-content;
+            cursor: pointer;
+            color: var(--primary);
+            text-decoration: underline;
+            text-decoration-style: dotted;
+        }
+
+        .coords-link:hover {
+            color: var(--accent);
+        }
+
+        /* --- Coordinate Map Modal --- */
+        .map-modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .map-modal-overlay.active {
+            display: flex;
+        }
+
+        .map-modal-content {
+            background: white;
+            border-radius: var(--radius-md);
+            padding: 15px;
+            width: 100%;
+            max-width: 700px;
+            position: relative;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        #activationMap {
+            width: 100%;
+            height: 400px;
+            border-radius: var(--radius-sm);
+        }
+
+        .map-modal-close {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            background: white;
+            color: var(--text-main);
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            font-weight: 300;
+            cursor: pointer;
+            box-shadow: var(--shadow-base);
+        }
+
+        .map-modal-close:hover {
+            color: var(--accent);
+        }
+
+        /* --- Artikel Inhoud --- */
+        .content {
+            background: white;
+            padding: 40px;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-base);
+        }
+
+        .content h2, .content h3 {
+            font-size: 1.5rem;
+            margin: 30px 0 15px 0;
+            color: var(--primary);
+        }
+
+        .content h2:first-child, .content h3:first-child {
+            margin-top: 0;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
+        .content ul {
+            margin-bottom: 20px;
+            padding-left: 20px;
+        }
+
+        /* --- Log Tabel & P2P --- */
+        .log-summary, .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #f8faf9;
+            border-radius: var(--radius-sm);
+            overflow: hidden;
+        }
+
+        .log-summary th, .log-summary td, .content table th, .content table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .log-summary th, .content table th {
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+        }
+
+        .p2p-box {
+            background: #fff8f0;
+            border: 1px solid #ffe8d1;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .p2p-box strong {
+            color: var(--accent);
+        }
+
+        /* --- Share Buttons --- */
+        .share-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            padding: 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+        }
+
+        .share-label {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--bg-body);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .share-btn:hover {
+            background: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-base);
+        }
+
+        /* --- Post Navigatie --- */
+        .post-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+            gap: 15px;
+        }
+
+        .post-nav a {
+            padding: 12px 20px;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            color: var(--text-main);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .post-nav a:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        @media(max-width: 768px) {
+            .slideshow-container {
+                height: 35vh;
+            }
+            .content {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .post-nav {
+                flex-direction: column;
+            }
+        }
+
+        {{ partial "footer-style.html" . | safeCSS }}
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <div style="font-weight: 700; font-size: 1.2rem;">🇳🇱 {{ .Site.Title | default "alldutchparks.nl" }}</div>
+        <a href="{{ "/activities/" | relURL }}" onclick="return goBack(event)">← Back</a>
+    </div>
+</header>
+
+<div class="slideshow-container">
+    <div class="slides">
+        {{ if .Params.images }}
+            {{ range .Params.images }}
+            <img class="slide" src="{{ . | relURL }}" alt="{{ $.Title }}">
+            {{ end }}
+        {{ else }}
+            <div class="slide" style="background-image: linear-gradient(135deg, #52785a, #b6d0a5);"></div>
+            <div class="slide" style="background-image: linear-gradient(135deg, #444, #777);"></div>
+            <div class="slide" style="background-image: linear-gradient(135deg, #9bb28d, #aed0a6);"></div>
+        {{ end }}
+    </div>
+    <div class="slideshow-dots">
+        {{ if .Params.images }}
+            {{ range $index, $element := .Params.images }}
+            <span class="dot {{ if eq $index 0 }}active{{ end }}"></span>
+            {{ end }}
+        {{ else }}
+            <span class="dot active"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        {{ end }}
+    </div>
+</div>
+
+<!-- Lightbox Overlay -->
+<div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
+    <span class="lightbox-close">&times;</span>
+    <img id="lightbox-img" src="" alt="Vergrote foto">
+</div>
+
+<!-- Coordinate Map Modal -->
+<div id="mapModal" class="map-modal-overlay" onclick="closeMapModal()">
+    <div class="map-modal-content" onclick="event.stopPropagation()">
+        <span class="map-modal-close" onclick="closeMapModal()">&times;</span>
+        <div id="activationMap"></div>
+    </div>
+</div>
+
+<div class="container">
+
+    <div class="article-header">
+        <div class="tags">
+            {{ with .Params.park_ref }}<span class="tag pota-ref">{{ . }}</span>{{ end }}
+            {{ with .Params.province }}<span class="tag">{{ . }}</span>{{ end }}
+        </div>
+        <h1>{{ .Title }}</h1>
+        <div class="meta">
+            Activated on {{ .Date.Format "02 January 2006" }} 
+            {{ with .Params.qso_count }}• {{ . }} QSO's{{ end }}
+        </div>
+    </div>
+
+    <!-- POTA Park Info Blok met GPS-Coördinaten -->
+    <div class="pota-specs">
+        <h3>📍 Park Amenities & Rules</h3>
+        <div class="spec-grid">
+            {{ with .Params.lat }}
+            {{ $lat := . }}
+            {{ $lon := $.Params.lon }}
+            <div class="spec-item">
+                <div class="spec-icon">📍</div>
+                <div class="spec-text">
+                    <h4>Coordinates</h4>
+                    <p class="coords-link" onclick="openMapModal({{ $lat }}, {{ $lon }})">{{ $lat }}, {{ $lon }}</p>
+                    {{ with $.Params.grid }}<span class="grid-locator">{{ . }}</span>{{ end }}
+                </div>
+            </div>
+            {{ end }}
+
+            {{ with .Params.parking }}
+            <div class="spec-item">
+                <div class="spec-icon">🚗</div>
+                <div class="spec-text">
+                    <h4>Parking</h4>
+                    <p>{{ . }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ with .Params.seating }}
+            <div class="spec-item">
+                <div class="spec-icon">🪑</div>
+                <div class="spec-text">
+                    <h4>Seating locations</h4>
+                    <p>{{ . }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ with .Params.antenna_rules }}
+            <div class="spec-item">
+                <div class="spec-icon">📡</div>
+                <div class="spec-text">
+                    <h4>Park rules</h4>
+                    <p>{{ . }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ with .Params.mobile_coverage }}
+            <div class="spec-item">
+                <div class="spec-icon">📱</div>
+                <div class="spec-text">
+                    <h4>Mobile coverage</h4>
+                    <p>{{ . }}</p>
+                </div>
+            </div>
+            {{ end }}
+
+            {{ with .Params.gpx_file }}
+            <div class="spec-item">
+              <div class="spec-icon">🗺️</div>
+              <div class="spec-text">
+                <h4>GPS Route / Track</h4>
+                  <p>
+                   <a href="{{ . | relURL }}" download style="color: var(--primary); font-weight: 700; text-decoration: underline;">
+                   Download GPX
+                   </a>
+                   <span style="color: var(--text-light); font-size: 0.85rem;"> (or check the map)</span>
+                 </p>
+              </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+
+    <!-- Inhoud van het Markdown bestand -->
+    <div class="content">
+        {{ .Content }}
+    </div>
+
+    <!-- Share this activation -->
+    <div class="share-box">
+        <span class="share-label">Share this activation:</span>
+        <div class="share-buttons">
+            <a class="share-btn" title="Share on WhatsApp" target="_blank" rel="noopener"
+               href="https://wa.me/?text={{ printf "%s %s" .Title .Permalink | urlquery }}">💬</a>
+            <a class="share-btn" title="Share on Facebook" target="_blank" rel="noopener"
+               href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}">📘</a>
+            <a class="share-btn" title="Share on X" target="_blank" rel="noopener"
+               href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink | urlquery }}">✕</a>
+            <a class="share-btn" title="Share on Mastodon" href="#" onclick="shareMastodon('{{ .Title }} {{ .Permalink }}'); return false;">🐘</a>
+            <a class="share-btn" title="Share via Email"
+               href="mailto:?subject={{ .Title | urlquery }}&body={{ .Permalink | urlquery }}">✉️</a>
+        </div>
+    </div>
+
+    <!-- Navigatie naar volgende/vorige verslag -->
+    <div class="post-nav">
+        {{ with .PrevInSection }}
+        <a href="{{ .Permalink }}">← Vorige: {{ .Title }}</a>
+        {{ else }}
+        <span></span>
+        {{ end }}
+        
+        {{ with .NextInSection }}
+        <a href="{{ .Permalink }}">Volgende: {{ .Title }} →</a>
+        {{ else }}
+        <span></span>
+        {{ end }}
+    </div>
+
+</div>
+
+<script>
+    const slides = document.querySelectorAll('.slide');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    slides.forEach(slide => {
+        // Only real photo slides (<img>) open the lightbox; the decorative
+        // gradient placeholders shown when there are no photos yet do not.
+        if (slide.tagName === 'IMG') {
+            slide.addEventListener('click', function() {
+                lightboxImg.src = this.src;
+                lightbox.classList.add('active');
+            });
+        }
+    });
+
+    function closeLightbox() {
+        lightbox.classList.remove('active');
+    }
+
+    // "Back" should return to wherever the visitor actually came from
+    // (Map, Parks, homepage, ...) rather than always landing on Activations.
+    function goBack(event) {
+        if (document.referrer && document.referrer.startsWith(window.location.origin)) {
+            event.preventDefault();
+            window.history.back();
+        }
+        // Otherwise (direct visit, external link, no referrer): fall back
+        // to the normal href navigation to /activities/.
+    }
+
+    // Coordinate map modal
+    let activationMap = null;
+    let activationMarker = null;
+
+    function openMapModal(lat, lon) {
+        document.getElementById('mapModal').classList.add('active');
+
+        if (!activationMap) {
+            activationMap = L.map('activationMap').setView([lat, lon], 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 18,
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(activationMap);
+            activationMarker = L.marker([lat, lon]).addTo(activationMap);
+        } else {
+            activationMap.setView([lat, lon], 15);
+            activationMarker.setLatLng([lat, lon]);
+        }
+
+        // Leaflet can't measure a container that was display:none, so
+        // force a resize check once the modal is actually visible.
+        setTimeout(() => activationMap.invalidateSize(), 100);
+    }
+
+    function closeMapModal() {
+        document.getElementById('mapModal').classList.remove('active');
+    }
+
+    // Mastodon has no single central domain, so ask which instance to share to.
+    function shareMastodon(text) {
+        const instance = window.prompt('Enter your Mastodon instance (e.g. mastodon.social):');
+        if (instance) {
+            window.open('https://' + instance.trim().replace(/^https?:\/\//, '') + '/share?text=' + encodeURIComponent(text), '_blank');
+        }
+    }
+
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeLightbox();
+            closeMapModal();
+        }
+    });
+</script>
+
+{{ partial "footer.html" . }}
+
+</body>
+</html>
