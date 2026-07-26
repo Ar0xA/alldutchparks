@@ -151,7 +151,7 @@
             background: #ffffff;
         }
 
-        /* --- Lightbox / Vergroot foto --- */
+        /* --- Lightbox / Enlarged photo --- */
         .lightbox-overlay {
             display: none;
             position: fixed;
@@ -218,14 +218,14 @@
             .lightbox-nav { font-size: 34px; padding: 6px 12px; }
         }
 
-        /* --- Hoofdcontainer --- */
+        /* --- Main container --- */
         .container {
             max-width: 800px;
             margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* --- Artikel Header --- */
+        /* --- Article header --- */
         .article-header {
             margin-bottom: 30px;
         }
@@ -396,7 +396,7 @@
             color: var(--accent);
         }
 
-        /* --- Artikel Inhoud --- */
+        /* --- Article content --- */
         .content {
             background: white;
             padding: 40px;
@@ -585,7 +585,7 @@
 <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
     <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); prevLightboxImage()">&#10094;</span>
-    <img id="lightbox-img" src="" alt="Vergrote foto">
+    <img id="lightbox-img" src="" alt="Enlarged photo">
     <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); nextLightboxImage()">&#10095;</span>
 </div>
 
@@ -685,7 +685,7 @@
         </div>
     </div>
 
-    <!-- Inhoud van het Markdown bestand -->
+    <!-- Markdown file content -->
     <div class="content">
         {{ .Content }}
     </div>
@@ -706,16 +706,16 @@
         </div>
     </div>
 
-    <!-- Navigatie naar volgende/vorige verslag -->
+    <!-- Navigation to next/previous report -->
     <div class="post-nav">
         {{ with .PrevInSection }}
-        <a href="{{ .Permalink }}">← Vorige: {{ .Title }}</a>
+        <a href="{{ .Permalink }}">← Previous: {{ .Title }}</a>
         {{ else }}
         <span></span>
         {{ end }}
         
         {{ with .NextInSection }}
-        <a href="{{ .Permalink }}">Volgende: {{ .Title }} →</a>
+        <a href="{{ .Permalink }}">Next: {{ .Title }} →</a>
         {{ else }}
         <span></span>
         {{ end }}

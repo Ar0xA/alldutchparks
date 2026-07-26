@@ -122,8 +122,8 @@
     <div class="page-header">
         <h2>Map of the Netherlands</h2>
         <div class="legend">
-            <span><span class="legend-dot done"></span>Geactiveerd ({{ $totalVisited }})</span>
-            <span><span class="legend-dot todo"></span>Nog te doen ({{ sub $totalParks $totalVisited }})</span>
+            <span><span class="legend-dot done"></span>Activated ({{ $totalVisited }})</span>
+            <span><span class="legend-dot todo"></span>To do ({{ sub $totalParks $totalVisited }})</span>
         </div>
     </div>
 
@@ -181,7 +181,7 @@
                 <div class="popup-name">${park.name}</div>
                 <div class="popup-meta">${park.province}</div>
                 <div class="popup-meta">${park.lat.toFixed(4)}, ${park.lon.toFixed(4)} (${park.grid})</div>
-                <div class="popup-todo-note">Nog niet geactiveerd</div>
+                <div class="popup-todo-note">Not yet activated</div>
             `;
             marker.bindPopup(popupHtml);
         }
