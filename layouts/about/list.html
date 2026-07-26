@@ -1,34 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About - alldutchparks.nl</title>
-    
-
-
-
-
-
-
-
-
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
-
-<meta name="description" content="Tracking every Dutch POTA park activation — field reports, photos, and live completion progress.">
-
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="alldutchparks.nl">
-<meta property="og:title" content="About">
-<meta property="og:description" content="Tracking every Dutch POTA park activation — field reports, photos, and live completion progress.">
-<meta property="og:url" content="http://localhost:1313/about/">
-
-
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="About">
-<meta name="twitter:description" content="Tracking every Dutch POTA park activation — field reports, photos, and live completion progress.">
-
-
+    <title>{{ .Title }} - {{ .Site.Title }}</title>
+    {{ partial "head-meta.html" . }}
 
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
@@ -81,7 +57,7 @@
         .card li { margin-bottom: 8px; }
         .card li strong { color: var(--text-main); }
 
-         
+        /* --- Profile photo --- */
         .about-card::after { content: ""; display: table; clear: both; }
         .profile-photo {
             display: block;
@@ -102,7 +78,7 @@
             .profile-photo { float: none; width: 100%; margin: 0 0 15px 0; }
         }
 
-         
+        /* --- Photo placeholder grid --- */
         .photo-placeholder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
         .photo-placeholder {
             aspect-ratio: 4 / 3;
@@ -122,38 +98,22 @@
             .container { padding: 0 15px; }
         }
 
-        footer { background: var(--primary); color: white; padding: 50px 20px 25px; margin-top: 60px; }
-.footer-content { max-width: 1200px; margin: auto; }
-.footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 40px; padding-bottom: 30px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.15); }
-.footer-title { font-weight: 700; font-size: 1.3rem; margin-bottom: 6px; }
-.footer-tagline { color: #aed0a6; font-size: 0.9rem; }
-.footer-links-heading { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #aed0a6; margin-bottom: 12px; }
-.footer-nav { display: flex; flex-direction: column; gap: 8px; }
-.footer-nav a { color: white; text-decoration: none; font-size: 0.9rem; opacity: 0.85; }
-.footer-nav a:hover { opacity: 1; text-decoration: underline; }
-.footer-bottom { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; font-size: 0.8rem; color: #cfe3c8; }
-.footer-bottom p { margin: 0; }
-.footer-disclaimer { opacity: 0.75; }
-@media(max-width: 600px) {
-    .footer-top { flex-direction: column; gap: 25px; }
-    .footer-bottom { flex-direction: column; align-items: flex-start; gap: 4px; }
-}
-
+        {{ partial "footer-style.html" . | safeCSS }}
     </style>
 </head>
 <body>
 
 <header>
     <div class="header-content">
-        <h1>🇳🇱 alldutchparks.nl</h1>
+        <h1>🇳🇱 {{ .Site.Title }}</h1>
         <p>Activations • Field Reports • Park Directory</p>
         <nav>
-            <a href="/">Home</a>
-            <a href="/parks/">Parks</a>
-            <a href="/map/">Map</a>
-            <a href="/activities/">Activations</a>
-            <a href="/fotos/">Photos</a>
-            <a href="/about/" class="active">About</a>
+            <a href="{{ "/" | relURL }}">Home</a>
+            <a href="{{ "/parks/" | relURL }}">Parks</a>
+            <a href="{{ "/map/" | relURL }}">Map</a>
+            <a href="{{ "/activities/" | relURL }}">Activations</a>
+            <a href="{{ "/fotos/" | relURL }}">Photos</a>
+            <a href="{{ "/about/" | relURL }}" class="active">About</a>
         </nav>
     </div>
 </header>
@@ -161,18 +121,20 @@
 <div class="container">
 
     <div class="card about-card">
-        
-        
-            
-                
-                    
-                
-            
-        
+        {{ $profilePhoto := "" }}
+        {{ with resources.Match "images/about/*" }}
+            {{ range sort . "Name" }}
+                {{ if and (eq .MediaType.MainType "image") (not $profilePhoto) }}
+                    {{ $profilePhoto = . }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
         <h2>About Me</h2>
-        
-        <img class="profile-photo" src="/images/about/qrz_pd3an-2_hu380dfa8a5ca12da1a474db9b9c74a166_2711276_1000x0_resize_q82_box_3.png" alt="Profile photo">
-        
+        {{ with $profilePhoto }}
+        <img class="profile-photo" src="{{ (.Resize "1000x q82").RelPermalink }}" alt="Profile photo">
+        {{ else }}
+        <div class="profile-photo profile-photo-placeholder"></div>
+        {{ end }}
         <p>
             Hi, I'm Art a.k.a. <strong>PD3AN</strong> — a Netherlands-based amateur radio operator
             that needed a kick in the ass to go outdoors, setting up a station somewhere quiet, and putting
@@ -203,8 +165,8 @@
             the way.
         </p>
         <p>
-            Follow live progress on the <a href="/parks/" style="color: var(--primary); font-weight: 600;">Parks page</a>
-            or see it plotted on the <a href="/map/" style="color: var(--primary); font-weight: 600;">Map</a>.
+            Follow live progress on the <a href="{{ "/parks/" | relURL }}" style="color: var(--primary); font-weight: 600;">Parks page</a>
+            or see it plotted on the <a href="{{ "/map/" | relURL }}" style="color: var(--primary); font-weight: 600;">Map</a>.
         </p>
     </div>
 
@@ -219,32 +181,7 @@
 
 </div>
 
-<footer>
-    <div class="footer-content">
-        <div class="footer-top">
-            <div class="footer-brand">
-                <div class="footer-title">🇳🇱 alldutchparks.nl</div>
-                <p class="footer-tagline">Activations • Field Reports • Park Directory</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-links-heading">Quick Links</div>
-                <nav class="footer-nav">
-                    <a href="/">Home</a>
-                    <a href="/parks/">Parks</a>
-                    <a href="/map/">Map</a>
-                    <a href="/activities/">Activations</a>
-                    <a href="/fotos/">Photos</a>
-                    <a href="/about/">About</a>
-                </nav>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 alldutchparks.nl. All rights reserved.</p>
-            <p class="footer-disclaimer">Not affiliated with Parks on the Air&reg; (POTA). Built with Hugo.</p>
-        </div>
-    </div>
-</footer>
-
+{{ partial "footer.html" . }}
 
 </body>
 </html>
