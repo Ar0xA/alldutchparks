@@ -1,0 +1,16 @@
+<a href="{{ .RelPermalink }}" class="card">
+    {{ with partial "activation-images.html" . }}
+    <img class="card-photo" src="{{ index . 0 | relURL }}" alt="{{ $.Title }}">
+    {{ else }}
+    <div class="card-photo"></div>
+    {{ end }}
+    <div class="card-body">
+        <h3 class="card-title">{{ .Title }}</h3>
+        <div class="meta-tags">
+            {{ with .Params.park_ref }}<span class="tag">{{ . }}</span>{{ end }}
+            {{ with .Params.qso_count }}<span class="tag">{{ . }} QSOs</span>{{ end }}
+        </div>
+        <p class="summary">{{ .Summary | plainify | truncate 120 }}</p>
+        <div class="date">{{ .Date.Format "02 Jan 2006" }}</div>
+    </div>
+</a>

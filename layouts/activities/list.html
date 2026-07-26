@@ -52,6 +52,22 @@
         .page-header { margin-bottom: 30px; }
         .page-header h2 { font-size: 2rem; color: var(--text-main); }
 
+        .section-block { margin-bottom: 40px; }
+        .section-block-header { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 20px; }
+        .section-title { font-size: 1.3rem; color: var(--text-main); }
+
+        .controls { display: flex; gap: 15px; flex-wrap: wrap; }
+        .search-box { padding: 10px 15px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.95rem; width: 250px; }
+        .filter-btn { padding: 10px 15px; background: white; border: 1px solid var(--border-color); border-radius: var(--radius-sm); color: var(--text-muted); cursor: pointer; font-weight: 500; transition: var(--transition); }
+
+        .province-section { background: white; border-radius: var(--radius-lg); padding: 30px; margin-bottom: 20px; box-shadow: var(--shadow-base); }
+        .province-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid var(--bg-body); padding-bottom: 15px; cursor: pointer; user-select: none; }
+        .province-section.collapsed .province-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .province-header h3 { font-size: 1.3rem; color: var(--primary); margin: 0; }
+        .province-stats { color: var(--text-muted); font-weight: 600; font-size: 0.9rem; }
+        .chevron { margin-left: auto; color: var(--text-light); font-size: 1rem; transition: transform 0.2s ease; }
+        .province-section:not(.collapsed) .chevron { transform: rotate(90deg); }
+
         .activations-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px; }
         .card { background: var(--bg-surface); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-base); transition: var(--transition); border: 1px solid var(--border-color); text-decoration: none; color: inherit; display: flex; flex-direction: column; }
         .card:hover { box-shadow: var(--shadow-hover); transform: translateY(-4px); }
@@ -89,28 +105,91 @@
         <h2>Field Activation Reports</h2>
     </div>
 
-    <div class="activations-grid">
-        {{ range .Pages }}
-        {{ $act := . }}
-        <a href="{{ .RelPermalink }}" class="card">
-            {{ with partial "activation-images.html" . }}
-            <img class="card-photo" src="{{ index . 0 | relURL }}" alt="{{ $act.Title }}">
-            {{ else }}
-            <div class="card-photo"></div>
+    <!-- Latest activations always visible up top, regardless of grouping below -->
+    <div class="section-block">
+        <div class="section-block-header">
+            <h3 class="section-title">Latest Activations</h3>
+        </div>
+        <div class="activations-grid">
+            {{ range first 3 .Pages }}
+                {{ partial "activation-card.html" . }}
             {{ end }}
-            <div class="card-body">
-                <h3 class="card-title">{{ .Title }}</h3>
-                <div class="meta-tags">
-                    {{ with .Params.park_ref }}<span class="tag">{{ . }}</span>{{ end }}
-                    {{ with .Params.qso_count }}<span class="tag">{{ . }} QSOs</span>{{ end }}
-                </div>
-                <p class="summary">{{ .Summary | plainify | truncate 120 }}</p>
-                <div class="date">{{ .Date.Format "02 Jan 2006" }}</div>
+        </div>
+    </div>
+
+    <!-- Full history, grouped by province and collapsible like the Parks page -->
+    <div class="section-block">
+        <div class="section-block-header">
+            <h3 class="section-title">All Activations by Province</h3>
+            <div class="controls">
+                <input type="text" id="searchBox" class="search-box" placeholder="Search by title, ref, or province..." onkeyup="filterActivations()">
+                <button class="filter-btn" id="toggleAllBtn" onclick="toggleAll(this)">Expand all</button>
             </div>
-        </a>
+        </div>
+
+        {{ range $province, $parks := .Site.Data.parks }}
+            {{ $provActs := where $.Pages "Params.province" $province }}
+            {{ if gt (len $provActs) 0 }}
+            <div class="province-section collapsed" id="{{ $province | anchorize }}">
+                <div class="province-header" onclick="toggleProvince(this)">
+                    <h3>{{ $province }}</h3>
+                    <span class="province-stats">{{ len $provActs }} activation{{ if ne (len $provActs) 1 }}s{{ end }}</span>
+                    <span class="chevron">▸</span>
+                </div>
+                <div class="activations-grid" style="display: none;">
+                    {{ range $provActs }}
+                        {{ partial "activation-card.html" . }}
+                    {{ end }}
+                </div>
+            </div>
+            {{ end }}
         {{ end }}
     </div>
 </div>
+
+<script>
+    function toggleProvince(header) {
+        const section = header.closest('.province-section');
+        const grid = section.querySelector('.activations-grid');
+        const collapsed = section.classList.toggle('collapsed');
+        grid.style.display = collapsed ? 'none' : 'grid';
+    }
+
+    let allExpanded = false;
+    function toggleAll(btn) {
+        allExpanded = !allExpanded;
+        document.querySelectorAll('.province-section').forEach(section => {
+            section.classList.toggle('collapsed', !allExpanded);
+            section.querySelector('.activations-grid').style.display = allExpanded ? 'grid' : 'none';
+        });
+        btn.textContent = allExpanded ? 'Collapse all' : 'Expand all';
+    }
+
+    function filterActivations() {
+        const query = document.getElementById('searchBox').value.toLowerCase();
+        const isSearchActive = query.length > 0;
+
+        document.querySelectorAll('.province-section').forEach(section => {
+            let visibleInProvince = 0;
+
+            section.querySelectorAll(':scope > .activations-grid > .card').forEach(card => {
+                const matches = card.textContent.toLowerCase().includes(query);
+                card.style.display = matches ? '' : 'none';
+                if (matches) visibleInProvince++;
+            });
+
+            section.style.display = visibleInProvince > 0 ? 'block' : 'none';
+
+            const grid = section.querySelector('.activations-grid');
+            const isCollapsed = section.classList.contains('collapsed');
+            if (isSearchActive && visibleInProvince > 0) {
+                grid.style.display = 'grid';
+            } else {
+                grid.style.display = isCollapsed ? 'none' : 'grid';
+            }
+        });
+    }
+</script>
 
 {{ partial "footer.html" . }}
 
