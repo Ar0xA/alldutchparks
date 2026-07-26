@@ -47,6 +47,12 @@
         /* --- Header & Navigation --- */
         header {
             background: var(--primary);
+            {{ with partial "header-photo.html" . }}
+            background-image: linear-gradient(to right, rgba(45,90,39,1) 0%, rgba(45,90,39,1) 20%, rgba(45,90,39,0) 60%), url('{{ . }}');
+            background-repeat: no-repeat, no-repeat;
+            background-position: left center, right center;
+            background-size: 100% 100%, auto 100%;
+            {{ end }}
             color: white;
             padding: 40px 20px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
@@ -608,7 +614,7 @@
     {{ $activation := . }}
     <div class="card card-featured">
         <div class="latest">
-            {{ with .Params.images }}
+            {{ with partial "activation-images.html" $activation }}
             <div class="hero-slideshow" id="heroSlideshow">
                 <div class="hero-slides">
                     {{ range $i, $img := . }}
@@ -689,7 +695,7 @@
             <div class="activation-list">
                 {{ range after 1 (first 3 (where site.RegularPages "Section" "activities")) }}
                 <a href="{{ .RelPermalink }}" class="activation" style="text-decoration: none; color: inherit;">
-                    {{ with .Params.images }}
+                    {{ with partial "activation-images.html" . }}
                     <div class="thumb" style="background-image: url('{{ index . 0 | relURL }}'); background-size: cover; background-position: center;"></div>
                     {{ else }}
                     <div class="thumb"></div>
@@ -713,7 +719,7 @@
 
         <!-- Ranking List added to the grid layout -->
         <div class="card">
-            <h2>Top 5 Activators</h2>
+            <h2>Top 5 POTA Activators</h2>
             <ul class="ranking-list">
                 {{ range site.Data.leaderboard }}
                 <li class="ranking-item">
@@ -743,7 +749,7 @@
         <div class="gallery">
             {{ range first 4 (where site.RegularPages "Section" "activities") }}
                 {{ $act := . }}
-                {{ with .Params.images }}
+                {{ with partial "activation-images.html" . }}
                 <img class="has-photo" src="{{ index . 0 | relURL }}" alt="{{ $act.Title }}">
                 {{ else }}
                 <div></div>

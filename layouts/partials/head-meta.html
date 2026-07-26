@@ -7,7 +7,7 @@
 {{ end }}
 
 {{ $image := "" }}
-{{ with .Params.images }}{{ $image = index . 0 }}{{ end }}
+{{ with partial "activation-images.html" . }}{{ $image = index . 0 }}{{ end }}
 
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
 

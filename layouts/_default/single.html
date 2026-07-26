@@ -47,6 +47,12 @@
         /* --- Header --- */
         header {
             background: var(--primary);
+            {{ with partial "header-photo.html" . }}
+            background-image: linear-gradient(to right, rgba(45,90,39,1) 0%, rgba(45,90,39,1) 20%, rgba(45,90,39,0) 60%), url('{{ . }}');
+            background-repeat: no-repeat, no-repeat;
+            background-position: left center, right center;
+            background-size: 100% 100%, auto 100%;
+            {{ end }}
             color: white;
             padding: 20px;
             position: relative;
@@ -186,6 +192,30 @@
 
         .lightbox-close:hover {
             color: var(--accent);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: white;
+            font-size: 50px;
+            font-weight: 300;
+            cursor: pointer;
+            user-select: none;
+            padding: 10px 18px;
+            transition: var(--transition);
+        }
+
+        .lightbox-nav:hover {
+            color: var(--accent);
+        }
+
+        .lightbox-prev { left: 5px; }
+        .lightbox-next { right: 5px; }
+
+        @media(max-width: 600px) {
+            .lightbox-nav { font-size: 34px; padding: 6px 12px; }
         }
 
         /* --- Hoofdcontainer --- */
@@ -526,9 +556,10 @@
 </header>
 
 <div class="slideshow-container">
+    {{ $activationImages := partial "activation-images.html" . }}
     <div class="slides">
-        {{ if .Params.images }}
-            {{ range .Params.images }}
+        {{ if $activationImages }}
+            {{ range $activationImages }}
             <img class="slide" src="{{ . | relURL }}" alt="{{ $.Title }}">
             {{ end }}
         {{ else }}
@@ -538,8 +569,8 @@
         {{ end }}
     </div>
     <div class="slideshow-dots">
-        {{ if .Params.images }}
-            {{ range $index, $element := .Params.images }}
+        {{ if $activationImages }}
+            {{ range $index, $element := $activationImages }}
             <span class="dot {{ if eq $index 0 }}active{{ end }}"></span>
             {{ end }}
         {{ else }}
@@ -553,7 +584,9 @@
 <!-- Lightbox Overlay -->
 <div id="lightbox" class="lightbox-overlay" onclick="closeLightbox()">
     <span class="lightbox-close">&times;</span>
+    <span class="lightbox-nav lightbox-prev" onclick="event.stopPropagation(); prevLightboxImage()">&#10094;</span>
     <img id="lightbox-img" src="" alt="Vergrote foto">
+    <span class="lightbox-nav lightbox-next" onclick="event.stopPropagation(); nextLightboxImage()">&#10095;</span>
 </div>
 
 <!-- Coordinate Map Modal -->
@@ -694,17 +727,39 @@
     const slides = document.querySelectorAll('.slide');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
+    const lightboxPrev = document.querySelector('.lightbox-prev');
+    const lightboxNext = document.querySelector('.lightbox-next');
 
-    slides.forEach(slide => {
-        // Only real photo slides (<img>) open the lightbox; the decorative
-        // gradient placeholders shown when there are no photos yet do not.
-        if (slide.tagName === 'IMG') {
-            slide.addEventListener('click', function() {
-                lightboxImg.src = this.src;
-                lightbox.classList.add('active');
-            });
-        }
+    // Only real photo slides (<img>) open the lightbox; the decorative
+    // gradient placeholders shown when there are no photos yet do not.
+    const photoSlides = Array.from(slides).filter(slide => slide.tagName === 'IMG');
+    let currentPhotoIndex = 0;
+
+    // A single photo has nothing to navigate to, so hide the arrows.
+    if (photoSlides.length < 2) {
+        lightboxPrev.style.display = 'none';
+        lightboxNext.style.display = 'none';
+    }
+
+    function showLightboxImage(index) {
+        currentPhotoIndex = (index + photoSlides.length) % photoSlides.length;
+        lightboxImg.src = photoSlides[currentPhotoIndex].src;
+    }
+
+    photoSlides.forEach((slide, index) => {
+        slide.addEventListener('click', function() {
+            showLightboxImage(index);
+            lightbox.classList.add('active');
+        });
     });
+
+    function prevLightboxImage() {
+        showLightboxImage(currentPhotoIndex - 1);
+    }
+
+    function nextLightboxImage() {
+        showLightboxImage(currentPhotoIndex + 1);
+    }
 
     function closeLightbox() {
         lightbox.classList.remove('active');
@@ -761,6 +816,10 @@
         if (event.key === "Escape") {
             closeLightbox();
             closeMapModal();
+        }
+        if (lightbox.classList.contains('active')) {
+            if (event.key === "ArrowLeft") prevLightboxImage();
+            if (event.key === "ArrowRight") nextLightboxImage();
         }
     });
 </script>

@@ -18,7 +18,16 @@
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
-        header { background: var(--primary); color: white; padding: 40px 20px; }
+        header {
+            background: var(--primary);
+            {{ with partial "header-photo.html" . }}
+            background-image: linear-gradient(to right, rgba(45,90,39,1) 0%, rgba(45,90,39,1) 20%, rgba(45,90,39,0) 60%), url('{{ . }}');
+            background-repeat: no-repeat, no-repeat;
+            background-position: left center, right center;
+            background-size: 100% 100%, auto 100%;
+            {{ end }}
+            color: white; padding: 40px 20px;
+        }
         .header-content { max-width: 1200px; margin: auto; }
         header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
         nav { display: flex; gap: 20px; flex-wrap: wrap; margin-top: 20px; }

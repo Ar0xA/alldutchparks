@@ -1,0 +1,31 @@
+{{- /*
+Auto-inventories photos for an activation page: any files dropped into
+assets/images/<park_ref lowercased>/ are picked up automatically, in
+filename order (activation photos are named by capture timestamp, so
+this is also chronological order). Source photos are full camera
+resolution (multi-MB); anything wider than 2000px is downsized and
+recompressed via Hugo's image pipeline so the site never ships the
+raw upload. Falls back to an explicit `images` frontmatter list when
+no such folder exists, so remote/placeholder images still work.
+*/ -}}
+{{- $page := . -}}
+{{- $images := slice -}}
+{{- with $page.Params.park_ref -}}
+  {{- $ref := lower . -}}
+  {{- $matches := resources.Match (printf "images/%s/*" $ref) -}}
+  {{- range sort $matches "Name" -}}
+    {{- if eq .MediaType.MainType "image" -}}
+      {{- $out := . -}}
+      {{- if gt .Width 2000 -}}
+        {{- $out = .Process "resize 2000x q75" -}}
+      {{- end -}}
+      {{- $images = $images | append $out.RelPermalink -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+{{- if eq (len $images) 0 -}}
+  {{- with $page.Params.images -}}
+    {{- $images = . -}}
+  {{- end -}}
+{{- end -}}
+{{ return $images }}

@@ -30,7 +30,16 @@
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg-body); color: var(--text-main); line-height: 1.6; }
 
-        header { background: var(--primary); color: white; padding: 40px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        header {
+            background: var(--primary);
+            {{ with partial "header-photo.html" . }}
+            background-image: linear-gradient(to right, rgba(45,90,39,1) 0%, rgba(45,90,39,1) 20%, rgba(45,90,39,0) 60%), url('{{ . }}');
+            background-repeat: no-repeat, no-repeat;
+            background-position: left center, right center;
+            background-size: 100% 100%, auto 100%;
+            {{ end }}
+            color: white; padding: 40px 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
         .header-content { max-width: 1200px; margin: auto; }
         header h1 { font-size: 2.2rem; font-weight: 700; margin-bottom: 8px; }
         header p { color: #aed0a6; font-size: 1.1rem; margin-bottom: 24px; }
@@ -84,7 +93,7 @@
         {{ range .Pages }}
         {{ $act := . }}
         <a href="{{ .RelPermalink }}" class="card">
-            {{ with .Params.images }}
+            {{ with partial "activation-images.html" . }}
             <img class="card-photo" src="{{ index . 0 | relURL }}" alt="{{ $act.Title }}">
             {{ else }}
             <div class="card-photo"></div>

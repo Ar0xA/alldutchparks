@@ -1,0 +1,19 @@
+{{- /*
+Site-wide header background photo. Drop a single image into
+assets/images/site/ (any filename) and it's picked up automatically,
+capped at 1920px wide. Returns "" if none is present, so callers can
+fall back to the plain solid-color header.
+*/ -}}
+{{- $photo := "" -}}
+{{- range sort (resources.Match "images/site/*") "Name" -}}
+  {{- if and (eq .MediaType.MainType "image") (not $photo) -}}
+    {{- $photo = . -}}
+  {{- end -}}
+{{- end -}}
+{{- with $photo -}}
+  {{- $out := . -}}
+  {{- if gt .Width 1920 -}}
+    {{- $out = .Process "resize 1920x q75" -}}
+  {{- end -}}
+  {{- $out.RelPermalink -}}
+{{- end -}}

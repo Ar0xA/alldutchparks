@@ -3,6 +3,12 @@ languageCode = "en-us"
 title = "alldutchparks.nl"
 enableRobotsTXT = true
 
+# Activation reports are dated by when the QSO session happened, not
+# editorially scheduled - without this, Hugo's default buildFuture=false
+# silently drops any activation timestamped after the last build, which
+# broke "featured = newest activation" on the homepage.
+buildFuture = true
+
 [markup.goldmark.renderer]
   unsafe = true
 
