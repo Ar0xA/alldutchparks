@@ -78,21 +78,14 @@
             .profile-photo { float: none; width: 100%; margin: 0 0 15px 0; }
         }
 
-        /* --- Photo placeholder grid --- */
-        .photo-placeholder-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 15px; }
-        .photo-placeholder {
-            aspect-ratio: 4 / 3;
-            border-radius: var(--radius-md);
-            background: linear-gradient(135deg, #52785a, #b6d0a5);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.85);
-            font-size: 0.85rem;
+        /* --- Elsewhere / link list --- */
+        .link-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+        .link-list a {
+            color: var(--primary);
             font-weight: 600;
-            text-align: center;
-            padding: 10px;
+            text-decoration: none;
         }
+        .link-list a:hover { text-decoration: underline; }
 
         @media(max-width: 600px) {
             .container { padding: 0 15px; }
@@ -153,7 +146,7 @@
             <li><strong>Transceiver:</strong> FTX-1 Optima</li>
             <li><strong>Antenna:</strong> 5.2m vertical whip with 16 ground radials.</li>
             <li><strong>Power:</strong> 5 to 100 W </li>
-        </ul>
+            <li><strong>Software:</strong> WSJT-X, GridTracker2, JS8Call, VarAC, MRP40, DeepCW, Yoniq, MTTY </li>
     </div>
 
     <div class="card">
@@ -171,12 +164,13 @@
     </div>
 
     <div class="card">
-        <h2>Photos</h2>
-        <div class="photo-placeholder-grid">
-            <div class="photo-placeholder">Photo coming soon</div>
-            <div class="photo-placeholder">Photo coming soon</div>
-            <div class="photo-placeholder">Photo coming soon</div>
-        </div>
+        <h2>Elsewhere</h2>
+        <ul class="link-list">
+            <li><a href="https://github.com/Ar0xA" target="_blank" rel="noopener">GitHub</a></li>
+            <li><a href="https://qhamlog.app" target="_blank" rel="noopener">qHamlog</a></li>
+            <li><a href="https://mastodon.radio/@PD3AN" target="_blank" rel="noopener">Mastodon (@PD3AN@mastodon.radio)</a></li>
+            <li><a href="https://infosec.exchange/@Ar0xa" target="_blank" rel="noopener">Mastodon (@Ar0xa@infosec.exchange)</a></li>
+        </ul>
     </div>
 
 </div>
