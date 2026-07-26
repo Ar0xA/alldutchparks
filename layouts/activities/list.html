@@ -62,6 +62,7 @@
 
         .province-section { background: white; border-radius: var(--radius-lg); padding: 30px; margin-bottom: 20px; box-shadow: var(--shadow-base); }
         .province-header { display: flex; align-items: center; gap: 15px; margin-bottom: 25px; border-bottom: 2px solid var(--bg-body); padding-bottom: 15px; cursor: pointer; user-select: none; }
+        .province-header:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
         .province-section.collapsed .province-header { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
         .province-header h3 { font-size: 1.3rem; color: var(--primary); margin: 0; }
         .province-stats { color: var(--text-muted); font-weight: 600; font-size: 0.9rem; }
@@ -131,7 +132,7 @@
             {{ $provActs := where $.Pages "Params.province" $province }}
             {{ if gt (len $provActs) 0 }}
             <div class="province-section collapsed" id="{{ $province | anchorize }}">
-                <div class="province-header" onclick="toggleProvince(this)">
+                <div class="province-header" onclick="toggleProvince(this)" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleProvince(this); }" role="button" tabindex="0" aria-expanded="false">
                     <h3>{{ $province }}</h3>
                     <span class="province-stats">{{ len $provActs }} activation{{ if ne (len $provActs) 1 }}s{{ end }}</span>
                     <span class="chevron">▸</span>
@@ -153,6 +154,7 @@
         const grid = section.querySelector('.activations-grid');
         const collapsed = section.classList.toggle('collapsed');
         grid.style.display = collapsed ? 'none' : 'grid';
+        header.setAttribute('aria-expanded', String(!collapsed));
     }
 
     let allExpanded = false;
@@ -161,6 +163,7 @@
         document.querySelectorAll('.province-section').forEach(section => {
             section.classList.toggle('collapsed', !allExpanded);
             section.querySelector('.activations-grid').style.display = allExpanded ? 'grid' : 'none';
+            section.querySelector('.province-header').setAttribute('aria-expanded', String(allExpanded));
         });
         btn.textContent = allExpanded ? 'Collapse all' : 'Expand all';
     }
@@ -187,6 +190,7 @@
             } else {
                 grid.style.display = isCollapsed ? 'none' : 'grid';
             }
+            section.querySelector('.province-header').setAttribute('aria-expanded', String(grid.style.display === 'grid'));
         });
     }
 </script>

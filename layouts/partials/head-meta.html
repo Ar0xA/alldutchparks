@@ -10,6 +10,7 @@
 {{ with partial "activation-images.html" . }}{{ $image = index . 0 }}{{ end }}
 
 <link rel="icon" type="image/svg+xml" href="{{ "favicon.svg" | relURL }}">
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} - Activation Reports" href="{{ "activities/index.xml" | relURL }}">
 
 <meta name="description" content="{{ $description }}">
 
