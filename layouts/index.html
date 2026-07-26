@@ -550,7 +550,7 @@
 
 <header>
     <div class="header-content">
-        <h1>🇳🇱 {{ .Site.Title | default "alldutchparks.nl" }}</h1>
+        <h1><a href="{{ "/" | relURL }}" style="color: inherit; text-decoration: none;">🇳🇱 {{ .Site.Title | default "alldutchparks.nl" }}</a></h1>
         <p>Activations • Travel Reports • Park Overview</p>
         <nav>
             <a href="{{ "/" | relURL }}" class="active">Home</a>

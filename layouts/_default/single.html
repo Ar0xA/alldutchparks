@@ -550,7 +550,7 @@
 
 <header>
     <div class="header-content">
-        <div style="font-weight: 700; font-size: 1.2rem;">🇳🇱 {{ .Site.Title | default "alldutchparks.nl" }}</div>
+        <a href="{{ "/" | relURL }}" style="font-weight: 700; font-size: 1.2rem; color: inherit; text-decoration: none;">🇳🇱 {{ .Site.Title | default "alldutchparks.nl" }}</a>
         <a href="{{ "/activities/" | relURL }}" onclick="return goBack(event)">← Back</a>
     </div>
 </header>
