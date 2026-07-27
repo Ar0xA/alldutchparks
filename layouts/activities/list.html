@@ -106,13 +106,19 @@
         <h2>Field Activation Reports</h2>
     </div>
 
+    <!-- Every visit, site-wide, regardless of nesting: a park with several
+         visits (content/activities/<ref>/<date>.md) still keeps its own
+         RegularPage per visit, only the plain "list direct children" .Pages
+         would miss those since they're now nested under a per-park section. -->
+    {{ $allVisits := where site.RegularPages "Section" "activities" }}
+
     <!-- Latest activations always visible up top, regardless of grouping below -->
     <div class="section-block">
         <div class="section-block-header">
             <h3 class="section-title">Latest Activations</h3>
         </div>
         <div class="activations-grid">
-            {{ range first 3 .Pages }}
+            {{ range first 3 $allVisits }}
                 {{ partial "activation-card.html" . }}
             {{ end }}
         </div>
@@ -129,7 +135,7 @@
         </div>
 
         {{ range $province, $parks := .Site.Data.parks }}
-            {{ $provActs := where $.Pages "Params.province" $province }}
+            {{ $provActs := where $allVisits "Params.province" $province }}
             {{ if gt (len $provActs) 0 }}
             <div class="province-section collapsed" id="{{ $province | anchorize }}">
                 <div class="province-header" onclick="toggleProvince(this)" onkeydown="if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggleProvince(this); }" role="button" tabindex="0" aria-expanded="false">

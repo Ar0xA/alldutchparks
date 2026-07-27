@@ -1,0 +1,46 @@
+{{- /*
+Park-to-park prev/next navigation, shared by the leaf visit template and
+the park hub template. Always resolves to the OTHER park's hub page (its
+latest activation) - multiple visits to the same park are never separate
+stops here, that's what the "other activations of this park" list is for.
+
+Parks are ordered by their own latest activation's date, matching how a
+flat list of one-file-per-park used to sort before parks could have
+multiple visits.
+
+Returns a dict: {"prev": Page|"", "next": Page|""}
+*/ -}}
+{{- $current := . -}}
+{{- $currentPark := $current -}}
+{{- if ne $current.Type "park" -}}
+    {{- $currentPark = $current.Parent -}}
+{{- end -}}
+
+{{- $withDates := slice -}}
+{{- range where site.Pages "Type" "park" -}}
+    {{- $visits := sort .Pages "Date" "desc" -}}
+    {{- if gt (len $visits) 0 -}}
+        {{- $withDates = $withDates | append (dict "page" . "latest" (index $visits 0).Date) -}}
+    {{- end -}}
+{{- end -}}
+{{- $sorted := sort $withDates "latest" "desc" -}}
+
+{{- $currentIndex := -1 -}}
+{{- range $i, $entry := $sorted -}}
+    {{- if eq $entry.page.RelPermalink $currentPark.RelPermalink -}}
+        {{- $currentIndex = $i -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $prevPark := "" -}}
+{{- $nextPark := "" -}}
+{{- if ge $currentIndex 0 -}}
+    {{- if gt $currentIndex 0 -}}
+        {{- $prevPark = (index $sorted (sub $currentIndex 1)).page -}}
+    {{- end -}}
+    {{- if lt (add $currentIndex 1) (len $sorted) -}}
+        {{- $nextPark = (index $sorted (add $currentIndex 1)).page -}}
+    {{- end -}}
+{{- end -}}
+
+{{- return dict "prev" $prevPark "next" $nextPark -}}

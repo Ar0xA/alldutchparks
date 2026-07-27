@@ -120,10 +120,10 @@
 
 <div class="container">
 
-    <!-- Fetch published activation reports -->
-    {{ $activations := where .Site.RegularPages "Section" "activities" }}
+    <!-- Fetch activated parks. Each park is its own section (see content/activities/<ref>/_index.md)
+         so a park with several visits still maps to exactly one, stable hub URL here. -->
     {{ $activeRefs := dict }}
-    {{ range $activations }}
+    {{ range where site.Pages "Type" "park" }}
         {{ if .Params.park_ref }}
             {{ $activeRefs = merge $activeRefs (dict .Params.park_ref .RelPermalink) }}
         {{ end }}

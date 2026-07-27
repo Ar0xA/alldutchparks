@@ -104,10 +104,10 @@
 
 <div class="container">
 
-    <!-- Same visited/todo matching logic as layouts/parks/list.html -->
-    {{ $activations := where .Site.RegularPages "Section" "activities" }}
+    <!-- Same visited/todo matching logic as layouts/parks/list.html: match
+         via each park's hub page so multi-visit parks still map to one URL. -->
     {{ $activeRefs := dict }}
-    {{ range $activations }}
+    {{ range where site.Pages "Type" "park" }}
         {{ if .Params.park_ref }}
             {{ $activeRefs = merge $activeRefs (dict .Params.park_ref .RelPermalink) }}
         {{ end }}

@@ -143,17 +143,19 @@
 
 <div class="container">
 
-    <!-- Map park_ref -> activation page, so we can look up images per park -->
-    {{ $activations := where .Site.RegularPages "Section" "activities" }}
+    <!-- Map park_ref -> park hub page (one per park, regardless of how many
+         visits it has - see content/activities/<ref>/_index.md), so we can
+         look up images per park without double-counting across visits. -->
+    {{ $parkPages := where site.Pages "Type" "park" }}
     {{ $activeRefs := dict }}
-    {{ range $activations }}
+    {{ range $parkPages }}
         {{ if .Params.park_ref }}
             {{ $activeRefs = merge $activeRefs (dict .Params.park_ref .) }}
         {{ end }}
     {{ end }}
 
     {{ $totalPhotos := 0 }}
-    {{ range $activations }}
+    {{ range $parkPages }}
         {{ with partial "activation-images.html" . }}
             {{ $totalPhotos = add $totalPhotos (len .) }}
         {{ end }}

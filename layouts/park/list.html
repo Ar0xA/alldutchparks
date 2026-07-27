@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ .Title }} - {{ .Site.Title | default "alldutchparks.nl" }}</title>
+    {{ $visits := sort .Pages "Date" "desc" }}
+    {{ $latest := index $visits 0 }}
+    <title>{{ $latest.Title }} - {{ .Site.Title | default "alldutchparks.nl" }}</title>
     {{ partial "head-meta.html" . }}
-    
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <!-- Leaflet: powers the coordinate popup map -->
@@ -23,7 +25,6 @@
             --text-muted: #4a5568;
             --text-light: #718096;
             --border-color: #e2e8f0;
-            
             --radius-lg: 16px;
             --radius-md: 12px;
             --radius-sm: 8px;
@@ -263,18 +264,8 @@
             font-size: 0.95rem;
         }
 
-        /* --- Multi-visit history (only shown for parks with >1 activation) --- */
+        /* --- Multi-visit history --- */
         .visit-history { margin-bottom: 30px; }
-        .visit-history-notice {
-            background: #fff8f0;
-            border: 1px solid #ffe8d1;
-            border-left: 4px solid var(--accent);
-            padding: 12px 15px;
-            border-radius: var(--radius-sm);
-            margin-bottom: 12px;
-            font-size: 0.95rem;
-        }
-        .visit-history-notice a { color: var(--accent); font-weight: 700; }
         .visit-history-list {
             background: white;
             border: 1px solid var(--border-color);
@@ -285,7 +276,6 @@
         .visit-history-list ul { list-style: none; margin-top: 12px; padding-left: 0; }
         .visit-history-list li { padding: 8px 0; border-top: 1px solid var(--bg-body); }
         .visit-history-list li:first-child { border-top: none; }
-        .visit-history-list li.current { font-weight: 700; color: var(--text-main); }
         .visit-history-list a { color: var(--primary); text-decoration: none; font-weight: 600; }
         .visit-history-list a:hover { text-decoration: underline; }
 
@@ -450,7 +440,7 @@
             padding-left: 20px;
         }
 
-        /* --- Log Tabel & P2P --- */
+        /* --- Log table & P2P --- */
         .log-summary, .content table {
             width: 100%;
             border-collapse: collapse;
@@ -529,7 +519,7 @@
             box-shadow: var(--shadow-base);
         }
 
-        /* --- Post Navigatie --- */
+        /* --- Post navigation (between parks) --- */
         .post-nav {
             display: flex;
             justify-content: space-between;
@@ -561,11 +551,11 @@
             .content {
                 padding: 20px;
             }
-            h1 {
-                font-size: 2rem;
-            }
             .post-nav {
                 flex-direction: column;
+            }
+            h1 {
+                font-size: 2rem;
             }
         }
 
@@ -582,11 +572,11 @@
 </header>
 
 <div class="slideshow-container">
-    {{ $activationImages := partial "activation-images.html" . }}
+    {{ $activationImages := partial "activation-images.html" $latest }}
     <div class="slides">
         {{ if $activationImages }}
             {{ range $activationImages }}
-            <img class="slide" src="{{ . | relURL }}" alt="{{ $.Title }}">
+            <img class="slide" src="{{ . | relURL }}" alt="{{ $latest.Title }}">
             {{ end }}
         {{ else }}
             <div class="slide" style="background-image: linear-gradient(135deg, #52785a, #b6d0a5);"></div>
@@ -627,61 +617,51 @@
 
     <div class="article-header">
         <div class="tags">
-            {{ with .Params.park_ref }}<span class="tag pota-ref">{{ . }}</span>{{ end }}
-            {{ with .Params.province }}<span class="tag">{{ . }}</span>{{ end }}
+            {{ with $latest.Params.park_ref }}<span class="tag pota-ref">{{ . }}</span>{{ end }}
+            {{ with $latest.Params.province }}<span class="tag">{{ . }}</span>{{ end }}
         </div>
-        <h1>{{ .Title }}</h1>
+        <h1>{{ $latest.Title }}</h1>
         <div class="meta">
-            Activated on {{ .Date.Format "02 January 2006" }} 
-            {{ with .Params.qso_count }}• {{ . }} QSO's{{ end }}
+            Activated on {{ $latest.Date.Format "02 January 2006" }}
+            {{ with $latest.Params.qso_count }}• {{ . }} QSO's{{ end }}
         </div>
     </div>
 
-    <!-- If this activation belongs to a park with multiple visits (a
-         content/activities/<ref>/ bundle), link back to the latest one and
-         list every visit. Parks with only one visit never show this. -->
-    {{ if and .Parent (eq .Parent.Type "park") }}
-        {{ $visits := sort .Parent.Pages "Date" "desc" }}
-        {{ if gt (len $visits) 1 }}
-        <div class="visit-history">
-            {{ if ne .RelPermalink (index $visits 0).RelPermalink }}
-            <p class="visit-history-notice">📅 This is an older activation of {{ .Parent.Title }}. <a href="{{ .Parent.RelPermalink }}">View the latest activation →</a></p>
-            {{ end }}
-            <details class="visit-history-list">
-                <summary>All activations of {{ .Parent.Title }} ({{ len $visits }})</summary>
-                <ul>
-                    {{ $current := .RelPermalink }}
-                    {{ range $visits }}
-                    <li{{ if eq .RelPermalink $current }} class="current"{{ end }}>
-                        <a href="{{ .RelPermalink }}">{{ .Date.Format "02 Jan 2006" }}</a>
-                        {{ with .Params.qso_count }} — {{ . }} QSOs{{ end }}
-                        {{ if eq .RelPermalink $current }} (this one){{ end }}
-                    </li>
-                    {{ end }}
-                </ul>
-            </details>
-        </div>
-        {{ end }}
+    <!-- This park's other visits, if any. A park with only one activation
+         never shows this - it's the same content whether you're here or on
+         the single visit's own page. -->
+    {{ $olderVisits := after 1 $visits }}
+    {{ if gt (len $olderVisits) 0 }}
+    <div class="visit-history">
+        <details class="visit-history-list">
+            <summary>Previous activations of {{ .Title }} ({{ len $olderVisits }})</summary>
+            <ul>
+                {{ range $olderVisits }}
+                <li><a href="{{ .RelPermalink }}">{{ .Date.Format "02 Jan 2006" }}</a>{{ with .Params.qso_count }} — {{ . }} QSOs{{ end }}</li>
+                {{ end }}
+            </ul>
+        </details>
+    </div>
     {{ end }}
 
     <!-- POTA Park Info Blok met GPS-Coördinaten -->
     <div class="pota-specs">
         <h3>📍 Park Amenities & Rules</h3>
         <div class="spec-grid">
-            {{ with .Params.lat }}
+            {{ with $latest.Params.lat }}
             {{ $lat := . }}
-            {{ $lon := $.Params.lon }}
+            {{ $lon := $latest.Params.lon }}
             <div class="spec-item">
                 <div class="spec-icon">📍</div>
                 <div class="spec-text">
                     <h4>Coordinates</h4>
                     <p class="coords-link" onclick="openMapModal({{ $lat }}, {{ $lon }})">{{ $lat }}, {{ $lon }}</p>
-                    {{ with $.Params.grid }}<span class="grid-locator">{{ . }}</span>{{ end }}
+                    {{ with $latest.Params.grid }}<span class="grid-locator">{{ . }}</span>{{ end }}
                 </div>
             </div>
             {{ end }}
 
-            {{ with .Params.parking }}
+            {{ with $latest.Params.parking }}
             <div class="spec-item">
                 <div class="spec-icon">🚗</div>
                 <div class="spec-text">
@@ -691,7 +671,7 @@
             </div>
             {{ end }}
 
-            {{ with .Params.seating }}
+            {{ with $latest.Params.seating }}
             <div class="spec-item">
                 <div class="spec-icon">🪑</div>
                 <div class="spec-text">
@@ -701,7 +681,7 @@
             </div>
             {{ end }}
 
-            {{ with .Params.antenna_rules }}
+            {{ with $latest.Params.antenna_rules }}
             <div class="spec-item">
                 <div class="spec-icon">📡</div>
                 <div class="spec-text">
@@ -711,7 +691,7 @@
             </div>
             {{ end }}
 
-            {{ with .Params.mobile_coverage }}
+            {{ with $latest.Params.mobile_coverage }}
             <div class="spec-item">
                 <div class="spec-icon">📱</div>
                 <div class="spec-text">
@@ -721,7 +701,7 @@
             </div>
             {{ end }}
 
-            {{ with .Params.gpx_file }}
+            {{ with $latest.Params.gpx_file }}
             <div class="spec-item">
               <div class="spec-icon">🗺️</div>
               <div class="spec-text">
@@ -740,7 +720,7 @@
 
     <!-- Markdown file content -->
     <div class="content">
-        {{ .Content }}
+        {{ $latest.Content }}
     </div>
 
     <!-- Share this activation -->
@@ -748,20 +728,19 @@
         <span class="share-label">Share this activation:</span>
         <div class="share-buttons">
             <a class="share-btn" title="Share on WhatsApp" target="_blank" rel="noopener"
-               href="https://wa.me/?text={{ printf "%s %s" .Title .Permalink | urlquery }}">💬</a>
+               href="https://wa.me/?text={{ printf "%s %s" $latest.Title .Permalink | urlquery }}">💬</a>
             <a class="share-btn" title="Share on Facebook" target="_blank" rel="noopener"
                href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | urlquery }}">📘</a>
             <a class="share-btn" title="Share on X" target="_blank" rel="noopener"
-               href="https://twitter.com/intent/tweet?text={{ .Title | urlquery }}&url={{ .Permalink | urlquery }}">✕</a>
-            <a class="share-btn" title="Share on Mastodon" href="#" onclick="shareMastodon('{{ .Title }} {{ .Permalink }}'); return false;">🐘</a>
+               href="https://twitter.com/intent/tweet?text={{ $latest.Title | urlquery }}&url={{ .Permalink | urlquery }}">✕</a>
+            <a class="share-btn" title="Share on Mastodon" href="#" onclick="shareMastodon('{{ $latest.Title }} {{ .Permalink }}'); return false;">🐘</a>
             <a class="share-btn" title="Share via Email"
-               href="mailto:?subject={{ .Title | urlquery }}&body={{ .Permalink | urlquery }}">✉️</a>
+               href="mailto:?subject={{ $latest.Title | urlquery }}&body={{ .Permalink | urlquery }}">✉️</a>
         </div>
     </div>
 
     <!-- Navigation between parks (always the other park's latest
-         activation, never a specific older visit of the same park - see
-         layouts/partials/park-nav.html). -->
+         activation - see layouts/partials/park-nav.html). -->
     {{ $parkNav := partial "park-nav.html" . }}
     <div class="post-nav">
         {{ with $parkNav.prev }}
@@ -786,12 +765,9 @@
     const lightboxPrev = document.querySelector('.lightbox-prev');
     const lightboxNext = document.querySelector('.lightbox-next');
 
-    // Only real photo slides (<img>) open the lightbox; the decorative
-    // gradient placeholders shown when there are no photos yet do not.
     const photoSlides = Array.from(slides).filter(slide => slide.tagName === 'IMG');
     let currentPhotoIndex = 0;
 
-    // A single photo has nothing to navigate to, so hide the arrows.
     if (photoSlides.length < 2) {
         lightboxPrev.style.display = 'none';
         lightboxNext.style.display = 'none';
@@ -821,18 +797,13 @@
         lightbox.classList.remove('active');
     }
 
-    // "Back" should return to wherever the visitor actually came from
-    // (Map, Parks, homepage, ...) rather than always landing on Activations.
     function goBack(event) {
         if (document.referrer && document.referrer.startsWith(window.location.origin)) {
             event.preventDefault();
             window.history.back();
         }
-        // Otherwise (direct visit, external link, no referrer): fall back
-        // to the normal href navigation to /activities/.
     }
 
-    // Coordinate map modal
     let activationMap = null;
     let activationMarker = null;
 
@@ -851,8 +822,6 @@
             activationMarker.setLatLng([lat, lon]);
         }
 
-        // Leaflet can't measure a container that was display:none, so
-        // force a resize check once the modal is actually visible.
         setTimeout(() => activationMap.invalidateSize(), 100);
     }
 
@@ -860,7 +829,6 @@
         document.getElementById('mapModal').classList.remove('active');
     }
 
-    // Mastodon has no single central domain, so ask which instance to share to.
     function shareMastodon(text) {
         const instance = window.prompt('Enter your Mastodon instance (e.g. mastodon.social):');
         if (instance) {
