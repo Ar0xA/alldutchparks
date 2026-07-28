@@ -91,7 +91,21 @@
             background: #111;
         }
 
+        /* Static blurred backdrop - sits behind .slides and does not take
+           part in the slide animation, so it never moves or flickers. */
+        .slideshow-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            filter: blur(40px) brightness(0.55);
+            transform: scale(1.15);
+            z-index: 0;
+        }
+
         .slides {
+            position: relative;
+            z-index: 1;
             display: flex;
             width: 300%;
             height: 100%;
@@ -108,6 +122,12 @@
             flex-shrink: 0;
             position: relative;
             cursor: pointer;
+            transition: transform 0.4s ease, filter 0.4s ease;
+        }
+
+        .slide:hover {
+            transform: scale(1.02);
+            filter: brightness(1.05);
         }
 
         .slide::after {
@@ -119,6 +139,21 @@
             height: 40%;
             background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
             pointer-events: none;
+        }
+
+        .slideshow-container::before {
+            content: '🔍 Click to enlarge';
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 5;
+            color: white;
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 5px 10px;
+            border-radius: var(--radius-sm, 6px);
+            pointer-events: none;
+            opacity: 0.85;
         }
 
         @keyframes slideAnimation {
@@ -250,6 +285,17 @@
         .tag.pota-ref {
             background: var(--accent);
             color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: filter 0.15s ease;
+        }
+
+        .tag.pota-ref:hover,
+        .tag.pota-ref:focus-visible {
+            filter: brightness(1.15);
+            text-decoration: underline;
         }
 
         h1 {
@@ -548,6 +594,11 @@
             .slideshow-container {
                 height: 35vh;
             }
+            .slideshow-container::before {
+                font-size: 0.7rem;
+                bottom: 14px;
+                right: 14px;
+            }
             .content {
                 padding: 20px;
             }
@@ -573,6 +624,9 @@
 
 <div class="slideshow-container">
     {{ $activationImages := partial "activation-images.html" $latest }}
+    {{ with $activationImages }}
+    <div class="slideshow-bg" style="background-image: url('{{ index . 0 | relURL }}');"></div>
+    {{ end }}
     <div class="slides">
         {{ if $activationImages }}
             {{ range $activationImages }}
@@ -617,7 +671,7 @@
 
     <div class="article-header">
         <div class="tags">
-            {{ with $latest.Params.park_ref }}<span class="tag pota-ref">{{ . }}</span>{{ end }}
+            {{ with $latest.Params.park_ref }}<a href="https://pota.app/#/park/{{ . }}" target="_blank" rel="noopener" class="tag pota-ref" title="View {{ . }} on POTA.app">{{ . }} ↗</a>{{ end }}
             {{ with $latest.Params.province }}<span class="tag">{{ . }}</span>{{ end }}
         </div>
         <h1>{{ $latest.Title }}</h1>
@@ -744,13 +798,13 @@
     {{ $parkNav := partial "park-nav.html" . }}
     <div class="post-nav">
         {{ with $parkNav.prev }}
-        <a href="{{ .Permalink }}">← Previous park: {{ .Title }}</a>
+        <a href="{{ .Permalink }}">← Newer: {{ .Title }}</a>
         {{ else }}
         <span></span>
         {{ end }}
 
         {{ with $parkNav.next }}
-        <a href="{{ .Permalink }}">Next park: {{ .Title }} →</a>
+        <a href="{{ .Permalink }}">Older: {{ .Title }} →</a>
         {{ else }}
         <span></span>
         {{ end }}
