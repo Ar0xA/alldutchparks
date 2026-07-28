@@ -693,7 +693,7 @@
         <div class="card">
             <h2>Recent logs</h2>
             <div class="activation-list">
-                {{ range after 1 (first 3 (where site.RegularPages "Section" "activities")) }}
+                {{ range after 1 (first 4 (where site.RegularPages "Section" "activities")) }}
                 <a href="{{ .RelPermalink }}" class="activation" style="text-decoration: none; color: inherit;">
                     {{ with partial "activation-images.html" . }}
                     <div class="thumb" style="background-image: url('{{ index . 0 | relURL }}'); background-size: cover; background-position: center;"></div>
