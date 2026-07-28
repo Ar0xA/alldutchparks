@@ -249,6 +249,17 @@
         .tag.pota-ref {
             background: var(--accent);
             color: white;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: filter 0.15s ease;
+        }
+
+        .tag.pota-ref:hover,
+        .tag.pota-ref:focus-visible {
+            filter: brightness(1.15);
+            text-decoration: underline;
         }
 
         h1 {
@@ -486,6 +497,22 @@
             color: var(--accent);
         }
 
+        /* --- Warning Box --- */
+        .warning-box {
+            background: #fdecea;
+            border: 1px solid #f5c6cb;
+            border-left: 4px solid #d32f2f;
+            color: #611a15;
+            padding: 15px;
+            border-radius: var(--radius-sm);
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+
+        .warning-box strong {
+            color: #d32f2f;
+        }
+
         /* --- Share Buttons --- */
         .share-box {
             display: flex;
@@ -627,7 +654,7 @@
 
     <div class="article-header">
         <div class="tags">
-            {{ with .Params.park_ref }}<span class="tag pota-ref">{{ . }}</span>{{ end }}
+            {{ with .Params.park_ref }}<a href="https://pota.app/#/park/{{ . }}" target="_blank" rel="noopener" class="tag pota-ref" title="View {{ . }} on POTA.app">{{ . }} ↗</a>{{ end }}
             {{ with .Params.province }}<span class="tag">{{ . }}</span>{{ end }}
         </div>
         <h1>{{ .Title }}</h1>
