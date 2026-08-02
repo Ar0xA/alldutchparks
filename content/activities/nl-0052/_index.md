@@ -1,6 +1,6 @@
 ---
-title: "Haaksbergseveen Provincial Park"
-park_ref: "NL-0053"
+title: "Buurserzand Provincial Park"
+park_ref: "NL-0052"
 province: "Overijssel"
 type: "park"
 ---

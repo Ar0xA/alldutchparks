@@ -130,10 +130,17 @@
     {{ end }}
 
     {{ $totalVisited := len $activeRefs }}
-    {{ $totalParks := 0 }}
+    {{/* Some parks straddle multiple provinces and appear under each one in
+         data/parks.json, so dedupe by ref rather than summing list lengths. */}}
+    {{ $allParkRefs := slice }}
     {{ range .Site.Data.parks }}
-        {{ $totalParks = add $totalParks (len .) }}
+        {{ range . }}
+            {{ with .ref }}
+                {{ $allParkRefs = $allParkRefs | append . }}
+            {{ end }}
+        {{ end }}
     {{ end }}
+    {{ $totalParks := len ($allParkRefs | uniq) }}
     {{ $totalTodo := sub $totalParks $totalVisited }}
 
     <div class="page-header">
