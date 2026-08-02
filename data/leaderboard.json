@@ -1,7 +1,7 @@
 [
-  { "rank": 1, "callsign": "PD8F", "activated": 151 },
-  { "rank": 2, "callsign": "PD4EV", "activated": 102 },
-  { "rank": 3, "callsign": "PD3RL", "activated": 87 },
-  { "rank": 4, "callsign": "PA0LKT", "activated": 62 },
-  { "rank": 5, "callsign": "PE1ISP", "activated": 59 }
+  { "rank": 1, "callsign": "PD8F", "activated": 149 },
+  { "rank": 2, "callsign": "PD4EV", "activated": 101 },
+  { "rank": 3, "callsign": "PD3RL", "activated": 86 },
+  { "rank": 4, "callsign": "PA0LKT", "activated": 61 },
+  { "rank": 5, "callsign": "PE1ISP", "activated": 60 }
 ]
