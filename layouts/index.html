@@ -575,12 +575,19 @@
     {{ $activatedRefs = $activatedRefs | uniq }}
     {{ $activatedCount := len $activatedRefs }}
 
-    {{/* Load parks from data/parks.json and calculate the total number of parks */}}
+    {{/* Load parks from data/parks.json and calculate the total number of unique parks.
+         Some parks straddle multiple provinces and appear under each one, so
+         dedupe by ref rather than summing province list lengths. */}}
     {{ $parks := site.Data.parks }}
-    {{ $totalParks := 0 }}
+    {{ $allRefs := slice }}
     {{ range $provName, $provParks := $parks }}
-      {{ $totalParks = add $totalParks (len $provParks) }}
+      {{ range $provParks }}
+        {{ with .ref }}
+          {{ $allRefs = $allRefs | append . }}
+        {{ end }}
+      {{ end }}
     {{ end }}
+    {{ $totalParks := len ($allRefs | uniq) }}
     {{ if eq $totalParks 0 }}
       {{ $totalParks = 320 }}
     {{ end }}
